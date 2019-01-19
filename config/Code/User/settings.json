@@ -1,0 +1,124 @@
+{
+    // VSCode settings
+
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": true,
+
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.dragAndDrop": false,
+    "editor.fontSize": 12,
+    "editor.minimap.enabled": false,
+    "editor.minimap.renderCharacters": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderIndentGuides": true,
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [120],
+    "editor.tokenColorCustomizations": {
+        "comments": "#676867"
+    },
+    "editor.wordWrapColumn": 120,
+
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
+
+    "extensions.ignoreRecommendations": true,
+
+    "files.associations": {
+        "*.lalrpop": "rust",
+        "*.ron": "rust",
+        "*.toml": "toml",
+    },
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/CVS": true,
+        "**/target": true,
+    },
+    "files.hotExit": "off",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+
+    "git.autofetch": false,
+
+    "html.autoClosingTags": false,
+
+    "update.channel": "none",
+
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
+    "terminal.integrated.shell.linux": "/usr/bin/fish",
+    "terminal.integrated.fontSize": 12,
+
+    "typescript.referencesCodeLens.enabled": false,
+
+    "window.menuBarVisibility": "toggle",
+    "window.newWindowDimensions": "inherit",
+    "window.restoreWindows": "none",
+    "window.zoomLevel": 0,
+
+    "workbench.activityBar.visible": false,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#1e1e1e"
+    },
+    "workbench.colorTheme": "Monokai Dark",
+    "workbench.iconTheme": "vs-seti",
+    "workbench.startupEditor": "none",
+
+    "[elixir]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.wordBasedSuggestions": false,
+        "editor.formatOnType": false,
+        "editor.acceptSuggestionOnEnter": "on",
+        "editor.trimAutoWhitespace": false,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+    },
+    "[html]": {
+        "editor.tabSize": 2,
+    },
+    "[latex]": {
+        "editor.tabSize": 2,
+        "editor.wordWrap": "bounded",
+    },
+    "[makefile]": {
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": false
+    },
+    "[markdown]": {
+        "editor.wordWrap": "bounded"
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "bounded"
+    },
+
+    // Extension settings
+
+    "activitusbar.views": {
+        "explorer": "file-text",
+        "search": "search",
+        "scm": "repo-forked",
+        "debug": "",
+        "extensions": "package"
+    },
+
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.recipes": [
+        { "name": "tectonic", "tools": ["tectonic"] }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "tectonic",
+            "command": "tectonic",
+            "args": [ "%DOC%.tex" ],
+        },
+    ],
+
+    "rust.cfg_test": true,
+}

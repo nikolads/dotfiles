@@ -1,0 +1,12 @@
+[user]
+    # name = 
+    # email =
+[pretty]
+	py-full = %C(red)%h%C(reset) - %C(green)(%cr)%C(reset) %C(black bold){{{author:%an}}}%C(reset) %C(magenta)%d%C(reset)%n%B
+	py-oneline = %C(red)%h%C(reset) - %C(green)(%cr)%C(reset) %C(black bold){{{author:%an}}}%C(reset) %s %C(magenta)%d%C(reset)
+[core]
+	editor = vim
+[fetch]
+	prune = true
+[push]
+	default = simple
