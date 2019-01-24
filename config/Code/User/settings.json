@@ -65,6 +65,7 @@
         "statusBar.background": "#1e1e1e"
     },
     "workbench.colorTheme": "Monokai Dark",
+    "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vs-seti",
     "workbench.startupEditor": "none",
 
