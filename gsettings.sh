@@ -43,3 +43,7 @@ gsettings set org.gnome.mutter overlay-key ""
 
 # TODO: Stop sounds when using the volume-up/volume-down keys.
 # They can be disabled from the GUI: Settings > Sound Effects
+
+# TODO: Use seperate keyboard layout per window
+# Can be changed from GUI: Settings > Region And Language
+

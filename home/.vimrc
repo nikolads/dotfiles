@@ -10,3 +10,6 @@ set smartindent
 set nowrap
 set splitright
 
+set clipboard=unnamedplus
+
+nmap q <Nop>

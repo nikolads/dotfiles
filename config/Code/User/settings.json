@@ -1,6 +1,5 @@
 {
     // VSCode settings
-
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.renderSideBySide": true,
 
@@ -58,6 +57,7 @@
     "window.menuBarVisibility": "toggle",
     "window.newWindowDimensions": "inherit",
     "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
     "window.zoomLevel": 0,
 
     "workbench.activityBar.visible": false,
@@ -67,6 +67,8 @@
     "workbench.colorTheme": "Monokai Dark",
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vs-seti",
+    "workbench.settings.openDefaultKeybindings": false,
+    "workbench.settings.openDefaultSettings": false,
     "workbench.startupEditor": "none",
 
     "[elixir]": {

@@ -18,10 +18,14 @@
     { "key": "ctrl+,",                "command": "workbench.action.openSettingsJson" },
     { "key": "ctrl+shift+tab",        "command": "workbench.action.previousEditor" },
     { "key": "shift+f5",              "command": "workbench.action.reloadWindow" },
-    { "key": "f12",                   "command": "workbench.action.toggleDevTools" },
     { "key": "ctrl+pagedown",         "command": "-workbench.action.nextEditor" },
     { "key": "ctrl+tab",              "command": "-workbench.action.openNextRecentlyUsedEditorInGroup" },
     { "key": "ctrl+shift+tab",        "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup" },
     { "key": "ctrl+,",                "command": "-workbench.action.openSettings" },
     { "key": "ctrl+pageup",           "command": "-workbench.action.previousEditor" },
+
+    { "key": "f1", "command": "editor.action.showHover" },
+
+    { "key": "ctrl+w", "command": "-workbench.action.closeWindow", "when": "!editorIsOpen && !multipleEditorGroups" },
+    { "key": "ctrl+q", "command": "-workbench.action.quit" },
 ]
