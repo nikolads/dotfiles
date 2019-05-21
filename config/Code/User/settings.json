@@ -1,5 +1,8 @@
 {
     // VSCode settings
+    "breadcrumbs.enabled": false,
+    "breadcrumbs.filePath": "last",
+
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.renderSideBySide": true,
 
@@ -62,7 +65,7 @@
 
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#1e1e1e"
+        "statusBar.background": "#1e1e1e",
     },
     "workbench.colorTheme": "Monokai Dark",
     "workbench.editor.enablePreview": false,
