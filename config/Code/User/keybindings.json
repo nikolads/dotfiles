@@ -45,10 +45,10 @@
     { "key": "alt+w left",      "command": "workbench.action.focusLeftGroup" },
     { "key": "alt+w right",     "command": "workbench.action.focusRightGroup" },
 
-    { "key": "alt+w ctrl+down",  "command": "workbench.action.moveEditorToBelowGroup" },
-    { "key": "alt+w ctrl+left",  "command": "workbench.action.moveEditorToLeftGroup" },
-    { "key": "alt+w ctrl+right", "command": "workbench.action.moveEditorToRightGroup" },
-    { "key": "alt+w ctrl+up",    "command": "workbench.action.moveEditorToAboveGroup" },
+    { "key": "alt+w shift+down",  "command": "workbench.action.moveEditorToBelowGroup" },
+    { "key": "alt+w shift+left",  "command": "workbench.action.moveEditorToLeftGroup" },
+    { "key": "alt+w shift+right", "command": "workbench.action.moveEditorToRightGroup" },
+    { "key": "alt+w shift+up",    "command": "workbench.action.moveEditorToAboveGroup" },
 
     { "key": "alt+w v", "command": "workbench.action.splitEditorRight" },
     { "key": "alt+w h", "command": "workbench.action.splitEditorDown" },

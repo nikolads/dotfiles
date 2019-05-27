@@ -33,6 +33,9 @@ set smartindent
 set nowrap
 set splitright
 
+" Allow selecting arbitrary rectangle in 'S-v' mode and selecting the end of line symbol
+set virtualedit=block,onemore
+
 set clipboard=unnamedplus
 
 nmap q <Nop>
