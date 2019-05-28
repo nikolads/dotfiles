@@ -1,30 +1,39 @@
 #!/usr/bin/fish
 
 set -l base
-set -l target
+set -l other
+set -l diff_with_working_tree
 
 switch (count $argv)
     case "0"
         set base "origin/master"
-        set target "HEAD"
+        set other "HEAD"
+        set diff_with_working_tree "1"
     
     case "1"
         set base $argv[1]
-        set target "HEAD"
+        set other "HEAD"
+        set diff_with_working_tree "1"
 
     case "2"
         set base $argv[1]
-        set target $argv[2]
+        set other $argv[2]
+        set diff_with_working_tree "0"
 
     case "*"
         echo "Usage: git diff-fork [BASE_BRANCH [COMMIT-ISH]]"
         exit
 end
 
-set -l rev (git rev-parse --abbrev-ref HEAD)
+set -l other_brach (git rev-parse --abbrev-ref $other)
 if test $status -ne 0; exit; end
 
-set -l merge_base (git merge-base --fork-point $base $rev)
+set -l merge_base (git merge-base --fork-point $base $other_branch)
 if test $status -ne 0; exit; end
 
-git diff $merge_base
+switch $diff_with_working_tree
+    case "0"
+        git diff $merge_base $other
+    case "1"
+        git diff $merge_base
+end
