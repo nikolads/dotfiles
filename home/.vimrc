@@ -22,8 +22,21 @@ filetype plugin on
 "
 set noswapfile
 
+" Don't ask to save when reading from stdin
+autocmd StdinReadPost * set buftype=nofile
+
+" Make `yank` and `put` use the system clipboard
+set clipboard=unnamedplus
+
+" Don't persist search highlights between vim sessions
+" Note that simply calling `nohlsearch` doesn't work (see :help nohlsearch)
+call feedkeys(":nohlsearch\<CR>")
+
+" Filename/command autocompletion completes up to first unambiguous character
+set wildmode=longest,list
+
 syntax on
-colorscheme ron
+colorscheme morning
 set showcmd
 set number
 
@@ -33,30 +46,19 @@ set smartindent
 set nowrap
 set splitright
 
-" Allow selecting arbitrary rectangle in 'S-v' mode and selecting the end of line symbol
+" Allow selecting arbitrary rectangle in visual block mode and selecting the end of line symbol
 set virtualedit=block,onemore
 
-set clipboard=unnamedplus
-
 nmap q <Nop>
-
-" Filename/command autocompletion completes up to first unambiguous character
-set wildmode=longest,list
 
 " Don't copy deleted text
 nnoremap d "_d
 vnoremap d "_d
 
-" Paste before cursor
-nnoremap p P
-
 " Reselect visual selection after some commands
 " vnoremap y y gv
 vnoremap > > gv
 vnoremap < < gv
-
-" set foldmethod=syntax
-" autocmd Filetype diff set foldmethod=manual
 
 " Open a file with all folds open
 autocmd BufWinEnter * silent! :%foldopen!
