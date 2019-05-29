@@ -25,10 +25,10 @@ switch (count $argv)
         exit
 end
 
-set -l other_brach (git rev-parse --abbrev-ref $other)
+set -l other_branch (git rev-parse --abbrev-ref $other)
 if test $status -ne 0; exit; end
 
-set -l merge_base (git merge-base --fork-point $base $other_branch)
+set -l merge_base (git merge-base $base $other_branch)
 if test $status -ne 0; exit; end
 
 switch $diff_with_working_tree
