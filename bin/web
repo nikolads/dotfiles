@@ -1,3 +1,0 @@
-#!/usr/bin/fish
-
-/usr/bin/firefox $argv >/dev/null 2>/dev/null &

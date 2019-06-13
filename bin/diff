@@ -1,3 +1,0 @@
-#!/usr/bin/fish
-
-/usr/bin/git diff --no-index $argv
