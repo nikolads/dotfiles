@@ -29,7 +29,8 @@ autocmd StdinReadPost * set buftype=nofile
 set clipboard=unnamedplus
 
 " Don't persist search highlights between vim sessions
-" Note that simply calling `nohlsearch` doesn't work (see :help nohlsearch)
+" Note that simply calling `nohlsearch` doesn't work because the highlight
+" state is saved and restored on function call (see :help nohlsearch)
 call feedkeys(":nohlsearch\<CR>")
 
 " Filename/command autocompletion completes up to first unambiguous character

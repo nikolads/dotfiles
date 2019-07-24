@@ -57,6 +57,7 @@
 
     "typescript.referencesCodeLens.enabled": false,
 
+    "window.customMenuBarAltFocus": false,
     "window.menuBarVisibility": "toggle",
     "window.newWindowDimensions": "inherit",
     "window.restoreWindows": "none",
