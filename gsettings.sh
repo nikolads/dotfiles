@@ -38,8 +38,18 @@ gsettings set org.gnome.shell.keybindings switch-to-application-7 "[]"
 gsettings set org.gnome.shell.keybindings switch-to-application-8 "[]"
 gsettings set org.gnome.shell.keybindings switch-to-application-9 "[]"
 
+## Set custom shortcuts
+## Note - the list must be appended to
+# gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Terminal'
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
+
 # Disable "Activities" shortcut so that '<Super>' alone doesn't do anything
 gsettings set org.gnome.mutter overlay-key ""
+
+# Other
+gsettings set org.gnome.desktop.interface enable-animations false
 
 # TODO: Stop sounds when using the volume-up/volume-down keys.
 # They can be disabled from the GUI: Settings > Sound Effects

@@ -4,4 +4,3 @@ function ls
 
     env LS_COLORS=$colors command ls --color=auto $argv
 end
-
