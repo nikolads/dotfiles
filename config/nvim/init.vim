@@ -1,21 +1,3 @@
-" # Vundle configuration
-" 
-" Install plugins with
-"     
-"     :source %
-"     :PluginInstall
-" 
-" see :h vundle for more details or wiki for FAQ
-"
-filetype off
-set rtp+=~/.vim/vundle/Vundle.vim
-call vundle#begin('~/.vim/vundle')
-
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'terryma/vim-multiple-cursors'
-
-call vundle#end()
 filetype plugin on
 
 " # Regular configuration
@@ -37,8 +19,8 @@ call feedkeys(":nohlsearch\<CR>")
 set wildmode=longest,list
 
 syntax on
-colorscheme default
-"colorscheme morning
+" colorscheme slate
+colorscheme morning
 set showcmd
 set number
 
@@ -53,6 +35,14 @@ set virtualedit=block,onemore
 
 nmap q <Nop>
 
+tnoremap <Esc> <c-\><c-n>
+
+" Make entering insert mode with `i` behave as if `a` was pressed, i.e. move
+" the cursor after the selected character
+" This makes `i <esc> i <esc> ...` not move the cursor forward
+nnoremap i a
+vnoremap i a
+
 " Don't copy deleted text
 nnoremap d "_d
 vnoremap d "_d
@@ -61,6 +51,11 @@ vnoremap d "_d
 " vnoremap y y gv
 vnoremap > > gv
 vnoremap < < gv
+
+" Window navigation
+nmap <c-w>h :split<CR>
+nmap <a-w>h :split<CR>
+noremap <a-w> <c-w>
 
 " Open a file with all folds open
 autocmd BufWinEnter * silent! :%foldopen!

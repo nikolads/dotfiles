@@ -8,6 +8,7 @@
 
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
+    "editor.cursorSurroundingLines": 5,
     "editor.dragAndDrop": false,
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
@@ -47,7 +48,7 @@
 
     "html.autoClosingTags": false,
 
-    "update.channel": "none",
+    "update.mode": "none",
 
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
@@ -105,13 +106,31 @@
 
     // Extension settings
 
-    "activitusbar.views": {
-        "explorer": "file-text",
-        "search": "search",
-        "scm": "repo-forked",
-        "debug": "",
-        "extensions": "package"
-    },
+    "activitusbar.views": [
+        {
+            "name": "explorer",
+            "octicon": "file-text"
+        },
+        {
+            "name": "search",
+            "octicon": "search"
+        },
+        {
+            "name": "scm",
+            "octicon": "repo-forked"
+        },
+        {
+            "name": "debug",
+            "octicon": "bug"
+        },
+        {
+            "name": "extensions",
+            "octicon": "package"
+        },
+        {
+            "name": ""
+        }
+    ],
 
     "C_Cpp.intelliSenseEngine": "Tag Parser",
 
