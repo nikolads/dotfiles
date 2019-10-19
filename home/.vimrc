@@ -1,25 +1,5 @@
-" # Vundle configuration
-" 
-" Install plugins with
-"     
-"     :source %
-"     :PluginInstall
-" 
-" see :h vundle for more details or wiki for FAQ
-"
-filetype off
-set rtp+=~/.vim/vundle/Vundle.vim
-call vundle#begin('~/.vim/vundle')
-
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'terryma/vim-multiple-cursors'
-
-call vundle#end()
 filetype plugin on
 
-" # Regular configuration
-"
 set noswapfile
 
 " Don't ask to save when reading from stdin
