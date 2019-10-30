@@ -66,9 +66,6 @@
     "window.zoomLevel": 0,
 
     "workbench.activityBar.visible": false,
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#1e1e1e",
-    },
     "workbench.colorTheme": "Monokai Dark",
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vs-seti",

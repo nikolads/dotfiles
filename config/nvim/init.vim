@@ -19,8 +19,6 @@ call feedkeys(":nohlsearch\<CR>")
 set wildmode=longest,list
 
 syntax on
-" colorscheme slate
-colorscheme morning
 set showcmd
 set number
 
