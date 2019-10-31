@@ -18,7 +18,7 @@ function fish_prompt
 
     set git_branch (git status 2>/dev/null | head -n 1 | sed 's/On branch \(.*\)/\1/')
     if test -n "$git_branch"
-        set_color magenta
+        set_color cyan
         printf "($git_branch) "
         set_color normal
     end

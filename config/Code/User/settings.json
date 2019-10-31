@@ -17,9 +17,6 @@
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "none",
     "editor.rulers": [120],
-    "editor.tokenColorCustomizations": {
-        "comments": "#676867"
-    },
     "editor.wordWrapColumn": 120,
 
     "explorer.confirmDragAndDrop": false,
@@ -66,7 +63,6 @@
     "window.zoomLevel": 0,
 
     "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "Monokai Dark",
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vs-seti",
     "workbench.settings.openDefaultKeybindings": false,
