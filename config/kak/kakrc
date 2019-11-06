@@ -1,0 +1,32 @@
+set-option global tabstop 4
+set-option global indentwidth 4
+set-option global scrolloff 3,3
+
+add-highlighter global/ number-lines
+set-face global LineNumbers bright-black
+set-face global LineNumberCursor bright-black
+set-face global LineNumberWrapped bright-black
+
+set-face global MenuForeground black@MenuForeground
+set-face global MenuBackground black@MenuBackground
+
+set-face global PrimarySelection black,blue
+set-face global SecondarySelection black,cyan
+
+hook global NormalKey y|d|c %{ nop %sh{
+    printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+}}
+
+map global normal p '!xsel --output --clipboard<ret>'
+map global normal P '<a-!>xsel --output --clipboard<ret>'
+
+hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
+
+# source ~/.config/kak/smarttab.kak/rc/smarttab.kak
+# source ~/.config/kak/smarttab.kak/rc/smarttab-powerline.kak
+
+# hook global WinCreate .* expandtab
+
+# hook global ModuleLoaded smarttab %{
+#     set-option global softtabstop 4
+# }
