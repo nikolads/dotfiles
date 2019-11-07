@@ -19,20 +19,15 @@ def subst_age(age):
             number = ' ' + number
 
         unit = match.group(2)
-        if unit == 'seconds':
-            unit = 's'
-        elif unit == 'minutes':
-            unit = 'm'
-        elif unit == 'hours':
-            unit = 'h'
-        elif unit == 'days':
-            unit = 'D'
-        elif unit == 'weeks':
-            unit = 'W'
-        elif unit == 'months':
-            unit = 'M'
-        elif unit == 'years':
-            unit = 'Y'
+        unit = (
+            's' if unit == 'seconds' else
+            'm' if unit == 'minutes' else
+            'h' if unit == 'hours' else
+            'D' if unit == 'days' else
+            'W' if unit == 'weeks' else
+            'M' if unit == 'months' else
+            'Y' if unit == 'years' else unit
+        )
 
         return number + unit + ' ago'
 
@@ -43,10 +38,7 @@ def subst_author(name):
 
 def subst_email(email):
     match = split_email.search(email)
-    if match == None:
-        return email
-    else:
-        return match[1]
+    return match[1] if match != None else email
 
 
 for line in sys.stdin:
@@ -60,20 +52,14 @@ for line in sys.stdin:
             command = match[1]
             value = match[2]
 
-            subst = None
-            if command == 'age':
-                subst = subst_age
-            elif command == 'author':
-                subst == subst_author
-            elif command == 'email':
-                subst = subst_email
+            subst = (
+                subst_age if command == 'age' else
+                subst_author if command == 'author' else
+                subst_email if command == 'email' else None
+            )
             
-            replacement = ''
-            if subst == None:
-                replacement = match[0]
-            else:
-                replacement = subst(value)
-
+            replacement = subst(value) if subst != None else match[0]
+ 
             line = line[:beg] + replacement + line[end:]
  
     print(line, end='')
