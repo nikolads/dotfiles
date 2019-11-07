@@ -1,6 +1,10 @@
 [user]
     # name = 
     # email =
+[color.decorate]
+    head = cyan bold
+    branch = cyan
+    remoteBranch = magenta
 [core]
 	editor = vim
 [fetch]

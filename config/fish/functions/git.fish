@@ -1,7 +1,7 @@
 function git
-    # set -l pretty_full "%C(red)%h%C(reset) - %C(green)(%cr)%C(reset) %C(8 bold){{{author:%an}}}%C(reset) %C(magenta)%d%C(reset)%n%B"
-    # set -l pretty_oneline "%C(red)%h%C(reset) %C(green){{{age:%cr}}}%C(reset) %C(8 bold){{{author:%an}}}%C(reset) - %s %C(magenta)%d%C(reset)"
-    set -l pretty_oneline "%C(red)%h%C(reset) %C(green){{{age:%cr}}}%C(reset) %C(8 bold){{{email:%ae}}}%C(reset) - %s %C(magenta)%d%C(reset)"
+    # set -l pretty_full "%C(red)%h%C(reset) - %C(green)(%cr)%C(reset) %C(8 bold){{{author:%an}}}%C(reset)  %C(auto)%D%C(reset)%n%B"
+    # set -l pretty_oneline "%C(red)%h%C(reset) %C(green){{{age:%cr}}}%C(reset) %C(8 bold){{{author:%an}}}%C(reset) - %s  %C(auto)%D%C(reset)"
+    set -l pretty_oneline "%C(red)%h%C(reset) %C(green){{{age:%cr}}}%C(reset) %C(8 bold){{{email:%ae}}}%C(reset) - %s  %C(auto)%D%C(reset)"
 
     if test (count $argv) -lt 1
         command git
