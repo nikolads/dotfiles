@@ -17,9 +17,24 @@ hook global NormalKey y|d|c %{ nop %sh{
     printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
 }}
 
+map global insert <c-left> '<a-;>b<a-;>;'
+map global insert <c-right> '<a-;>e<a-;>;'
+map global normal <c-left> 'b'
+map global normal <c-right> 'e'
+map global normal <c-s-left> 'B'
+map global normal <c-s-right> 'E'
+
+map global insert <pageup> '<a-;><pageup>'
+map global insert <pagedown> '<a-;><pagedown>'
+
+# Enter insert mode where the cursor is intead of at the start of the selection.
+# Note that this also discards the selection.
+map global normal i ';i'
+
 map global normal p '!xsel --output --clipboard<ret>'
 map global normal P '<a-!>xsel --output --clipboard<ret>'
 
+# Trim trailing whitespace on save
 hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
 
 # Source the plugin manager
