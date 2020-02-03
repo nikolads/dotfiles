@@ -33,7 +33,7 @@ if test $status -ne 0; exit; end
 
 switch $diff_with_working_tree
     case "0"
-        git diff $merge_base $other
+        git diff --ignore-space-change $merge_base $other
     case "1"
-        git diff $merge_base
+        git diff --ignore-space-change $merge_base
 end
