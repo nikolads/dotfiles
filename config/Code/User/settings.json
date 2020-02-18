@@ -8,7 +8,7 @@
 
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
-    "editor.cursorSurroundingLines": 5,
+    "editor.cursorSurroundingLines": 3,
     "editor.dragAndDrop": false,
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
@@ -56,10 +56,10 @@
     "typescript.referencesCodeLens.enabled": false,
 
     "window.customMenuBarAltFocus": false,
-    "window.menuBarVisibility": "toggle",
+    "window.menuBarVisibility": "hidden",
     "window.newWindowDimensions": "inherit",
     "window.restoreWindows": "none",
-    "window.titleBarStyle": "custom",
+    "window.titleBarStyle": "native",
     "window.zoomLevel": 0,
 
     "workbench.activityBar.visible": false,
@@ -91,9 +91,6 @@
         "editor.insertSpaces": false
     },
     "[markdown]": {
-        "editor.wordWrap": "bounded"
-    },
-    "[plaintext]": {
         "editor.wordWrap": "bounded"
     },
 

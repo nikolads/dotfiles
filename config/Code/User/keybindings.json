@@ -64,4 +64,12 @@
     { "key": "alt+g", "command": "breadcrumbs.toggle" },
     { "key": "ctrl+g", "command": "breadcrumbs.focusAndSelect", "when": "!breadcrumbsActive" },
     { "key": "ctrl+g", "command": "breadcrumbs.selectEditor", "when": "breadcrumbsActive && breadcrumbsVisible" },
+
+    { "key": "ctrl+shift+,", "command": "editor.action.outdentLines", "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+shift+.", "command": "editor.action.indentLines", "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+[", "command": "-editor.action.outdentLines", "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+]", "command": "-editor.action.indentLines", "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+shift+.", "command": "-breadcrumbs.focusAndSelect", "when": "breadcrumbsPossible" },
+    { "key": "ctrl+shift+,", "command": "-editor.action.inPlaceReplace.up", "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+shift+.", "command": "-editor.action.inPlaceReplace.down", "when": "editorTextFocus && !editorReadonly" },
 ]
