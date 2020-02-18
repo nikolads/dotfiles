@@ -6,7 +6,7 @@
     branch = cyan
     remoteBranch = magenta
 [core]
-	editor = vim
+	editor = kak
 [fetch]
 	prune = true
 [push]

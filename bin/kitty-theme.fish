@@ -27,18 +27,18 @@ switch $command
         switch (readlink $HOME/.config/kitty/current-theme.conf)
             case $light_theme
                 ln -sf $dark_theme $HOME/.config/kitty/current-theme.conf
-                
+
             case $dark_theme
                 ln -sf $light_theme $HOME/.config/kitty/current-theme.conf
         end
 
     case "reload"
-    
+
     case "*"
         help
 end
 
 for sock in /tmp/kitty/*.sock
-    kitty @ --to=unix:$sock set-colors --all --configured $HOME/.config/kitty/current-theme.conf
+    kitty @ --to=unix:$sock set-colors --all --configured $HOME/.config/kitty/current-theme.conf &
 end
 
