@@ -1,13 +1,23 @@
 [user]
-    # name = 
+    # name =
     # email =
+
+[alias]
+    diff-fork = !git-diff-fork.fish
+
 [color.decorate]
     head = cyan bold
     branch = cyan
     remoteBranch = magenta
+
 [core]
-	editor = kak
+    editor = kak
+
+[diff]
+    algorithm = histogram
+
 [fetch]
-	prune = true
+    prune = true
+
 [push]
-	default = simple
+    default = simple
