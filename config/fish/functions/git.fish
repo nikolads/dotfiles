@@ -11,13 +11,13 @@ function git
     switch $argv[1]
         case "log"
             if /usr/bin/test -t 1
-                command git --no-pager log --pretty="format:$pretty_oneline" --color=always $argv[2..-1] | eval $HOME/bin/git-log-fmt.py
+                command git --no-pager log --pretty="format:$pretty_oneline" --color=always $argv[2..-1] | $HOME/bin/git-log-fmt.py
             else
-                command git --no-pager log --pretty="format:$pretty_oneline" $argv[2..-1] | eval $HOME/bin/git-log-fmt.py
+                command git --no-pager log --pretty="format:$pretty_oneline" $argv[2..-1] | $HOME/bin/git-log-fmt.py
             end
 
-   
+
         case "*"
-            command git $argv 
+            command git $argv
     end
 end

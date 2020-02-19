@@ -1,6 +1,6 @@
 [user]
-    # name =
-    # email =
+    name = Nikola Stoyanov
+    email = ns.barzakov@gmail.com
 
 [alias]
     diff-fork = !git-diff-fork.fish

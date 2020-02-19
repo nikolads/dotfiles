@@ -72,4 +72,27 @@
     { "key": "ctrl+shift+.", "command": "-breadcrumbs.focusAndSelect", "when": "breadcrumbsPossible" },
     { "key": "ctrl+shift+,", "command": "-editor.action.inPlaceReplace.up", "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+shift+.", "command": "-editor.action.inPlaceReplace.down", "when": "editorTextFocus && !editorReadonly" },
+
+    // Dance
+
+    { "key": "q",           "command": "-dance.macro.play" },
+    { "key": "shift+q",     "command": "-dance.macro.record.start" },
+    { "key": "ctrl+d",      "command": "-dance.down.halfPage" },
+    { "key": "q",           "command": "dance.select.word.previous",            "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "shift+q",     "command": "dance.select.word.previous.extend",     "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+q",       "command": "dance.select.word.alt.previous",        "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "shift+alt+q", "command": "dance.select.word.alt.previous.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
+
+    { "key": "d",     "command": "-dance.delete.yank" },
+    { "key": "alt+d", "command": "-dance.delete.noYank" },
+    { "key": "c",     "command": "-dance.delete.insert.yank" },
+    { "key": "alt+c", "command": "-dance.delete.insert.noYank" },
+    { "key": "d",     "command": "deleteRight",         "when": "editorTextFocus && !editorHasSelection && dance.mode == 'normal'" },
+    { "key": "d",     "command": "dance.delete.noYank", "when": "editorTextFocus && editorHasSelection && dance.mode == 'normal'" },
+    { "key": "alt+d", "command": "dance.delete.yank",   "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "c",     "command": "dance.delete.insert.noYank", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+c", "command": "dance.delete.insert.yank",   "when": "editorTextFocus && dance.mode == 'normal'" },
+
+    { "key": "ctrl+v", "command": "-dance.tmp.normal" },
+    { "key": "ctrl+v", "command": "-dance.tmp.insert" },
 ]
