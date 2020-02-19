@@ -32,6 +32,8 @@ map global insert <pagedown> '<a-;><pagedown>'
 map global normal p '!xsel --output --clipboard<ret>'
 map global normal P '<a-!>xsel --output --clipboard<ret>'
 
+map global user / ':comment-line<ret>' -docstring 'comment line'
+
 # Trim trailing whitespace on save
 hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
 

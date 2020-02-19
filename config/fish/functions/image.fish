@@ -1,3 +1,3 @@
 function image
-    command eog
+    command eog $argv
 end

@@ -17,10 +17,20 @@ call feedkeys(":nohlsearch\<CR>")
 set wildmode=longest,list
 
 syntax on
-colorscheme default
-"colorscheme morning
 set showcmd
 set number
+
+" Use a color scheme with 16 color palette.
+" Ie use only the 16 terminal colors (0 - 15)
+" This has the following benefits
+" - unified look for all terminal programs
+" - can change between light and dark mode by changing the terminal palette
+"
+" For vim we don't need a seperate color scheme. By setting the variable
+" `t_Co` to 16 we force vim to use only 16 colors.
+" This hack doesn't work for neovim as neovim ignores `t_Co`
+colorscheme default
+set t_Co=16
 
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set whichwrap+=<,>,h,l,[,]
