@@ -2,7 +2,7 @@ set-option global tabstop 4
 set-option global indentwidth 4
 set-option global scrolloff 3,3
 
-add-highlighter global/ number-lines -separator '  '
+add-highlighter global/line-numbers number-lines -separator '  '
 set-face global LineNumbers bright-black
 set-face global LineNumberCursor bright-black
 set-face global LineNumberWrapped bright-black
@@ -24,32 +24,67 @@ map global normal <c-s-right> 'E'
 map global insert <c-left> '<a-;>b<a-;>;'
 map global insert <c-right> '<a-;>e<a-;>;'
 
+map global normal <a-up> ':move-line-above<ret>'
+map global normal <a-down> ':move-line-below<ret>'
+
 map global normal <pageup> '<c-u>'
 map global normal <pagedown> '<c-d>'
-map global insert <pageup> '<a-;><pageup>'
-map global insert <pagedown> '<a-;><pagedown>'
+map global insert <pageup> '<a-;><c-u>'
+map global insert <pagedown> '<a-;><c-u>'
 
 map global normal p '!xsel --output --clipboard<ret>'
 map global normal P '<a-!>xsel --output --clipboard<ret>'
 
-map global user / ':comment-line<ret>' -docstring 'comment line'
+map global normal d <a-d>
+map global normal <a-d> d
+map global normal c <a-c>
+map global normal <a-c> c
 
-# Trim trailing whitespace on save
-hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
+map global normal <s-n> <a-n>
+map global normal <a-n> <s-n>
 
 # Enter insert mode where the cursor is intead of at the start of the selection.
 # Note that this also discards the selection.
 map global normal i ';i'
 
+map global normal <c-p> ': fzf-mode<ret>'
+
+map global user / ':comment-line<ret>' -docstring 'comment line'
+map global user p ': fzf-mode<ret>' -docstring 'fzf mode'
+map global user s '<a-x>|sort<ret>' -docstring 'sort lines ASC'
+map global user <s-s> '<a-x>|sort --reverse<ret>' -docstring 'sort lines DESC'
+map global user l ':toggle-highlighter global/line-numbers number-lines -separator ''  ''<ret>' -docstring 'toggle line numbers'
+map global user z ':toggle-highlighter buffer/word-wrap wrap -word -indent<ret>' -docstring 'toggle word wrap'
+
+# Cycle completions with <tab>/<s-tab>.
+# Only in effect if there are completions and the preceeding character is not
+# whitespace or line feed.
+hook global InsertCompletionShow .* %{
+    try %{
+        exec -draft 'h<a-K>\h<ret>'
+        map window insert <s-tab> <c-p>
+        map window insert <tab> <c-n>
+    }
+}
+hook global InsertCompletionHide .* %{
+    unmap window insert <tab> <c-n>
+    unmap window insert <s-tab> <c-p>
+}
+
+# Trim trailing whitespace on save.
+hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
+
 # Source the plugin manager
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
+plug "alexherbo2/move-line.kak"
+plug "alexherbo2/toggle-highlighter.kak"
 plug "andreyorst/fzf.kak"
+plug "andreyorst/plug.kak" noload
 plug "andreyorst/smarttab.kak"
 plug "ul/kak-lsp"
 
 # plugin: fzf.kak
-map global normal <c-p> ': fzf-mode<ret>'
 hook global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd'
 }
