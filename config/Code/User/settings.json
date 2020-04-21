@@ -17,6 +17,7 @@
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "none",
     "editor.rulers": [120],
+    "editor.semanticHighlighting.enabled": true,
     "editor.wordWrapColumn": 120,
 
     "explorer.confirmDragAndDrop": false,
@@ -137,4 +138,10 @@
     ],
 
     "rust.cfg_test": true,
+    "rust-client.rlsPath": "/usr/bin/rls",
+
+    "rust-analyzer.updates.channel": "stable",
+    "rust-analyzer.inlayHints.chainingHints": false,
+    "rust-analyzer.inlayHints.parameterHints": false,
+    "rust-analyzer.inlayHints.typeHints": false,
 }
