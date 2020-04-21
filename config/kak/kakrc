@@ -9,9 +9,23 @@ set-face global LineNumberWrapped bright-black
 
 set-face global MenuForeground black@MenuForeground
 set-face global MenuBackground black@MenuBackground
+set-face global MenuInfo bright-black@MenuInfo
 
 set-face global PrimarySelection black,blue
 set-face global SecondarySelection black,cyan
+
+hook global ModeChange ".*:insert" %{
+    set-face buffer PrimaryCursor black,yellow
+    set-face buffer PrimaryCursorEol black,magenta
+    set-face buffer SecondaryCursor black,yellow
+    set-face buffer SecondaryCursorEol black,magenta
+}
+hook global ModeChange ".*:normal" %{
+    set-face buffer PrimaryCursor @PrimaryCursor
+    set-face buffer PrimaryCursorEol @PrimaryCursorEol
+    set-face buffer SecondaryCursor @SecondaryCursor
+    set-face buffer SecondaryCursorEol @SecondaryCursorEol
+}
 
 hook global NormalKey y|d|c %{ nop %sh{
     printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
@@ -24,16 +38,29 @@ map global normal <c-s-right> 'E'
 map global insert <c-left> '<a-;>b<a-;>;'
 map global insert <c-right> '<a-;>e<a-;>;'
 
-map global normal <a-up> ':move-line-above<ret>'
-map global normal <a-down> ':move-line-below<ret>'
+map global normal ^ q
+map global normal <a-^> Q
+map global normal q b
+map global normal Q B
+map global normal <a-q> <a-b>
+map global normal <a-Q> <a-B>
 
 map global normal <pageup> '<c-u>'
 map global normal <pagedown> '<c-d>'
 map global insert <pageup> '<a-;><c-u>'
 map global insert <pagedown> '<a-;><c-u>'
 
+map global normal <c-home> 'gg'
+map global normal <c-end> 'ge'
+map global normal <c-s-home> 'Gg'
+map global normal <c-s-end> 'Ge'
+
 map global normal p '!xsel --output --clipboard<ret>'
 map global normal P '<a-!>xsel --output --clipboard<ret>'
+map global normal R 'dp'
+
+map global normal <a-p> p
+map global normal <a-P> P
 
 map global normal d <a-d>
 map global normal <a-d> d
@@ -47,14 +74,9 @@ map global normal <a-n> <s-n>
 # Note that this also discards the selection.
 map global normal i ';i'
 
-map global normal <c-p> ': fzf-mode<ret>'
-
-map global user / ':comment-line<ret>' -docstring 'comment line'
-map global user p ': fzf-mode<ret>' -docstring 'fzf mode'
+map global user / ': comment-line<ret>' -docstring 'comment line'
 map global user s '<a-x>|sort<ret>' -docstring 'sort lines ASC'
 map global user <s-s> '<a-x>|sort --reverse<ret>' -docstring 'sort lines DESC'
-map global user l ':toggle-highlighter global/line-numbers number-lines -separator ''  ''<ret>' -docstring 'toggle line numbers'
-map global user z ':toggle-highlighter buffer/word-wrap wrap -word -indent<ret>' -docstring 'toggle word wrap'
 
 # Cycle completions with <tab>/<s-tab>.
 # Only in effect if there are completions and the preceeding character is not
@@ -62,8 +84,8 @@ map global user z ':toggle-highlighter buffer/word-wrap wrap -word -indent<ret>'
 hook global InsertCompletionShow .* %{
     try %{
         exec -draft 'h<a-K>\h<ret>'
-        map window insert <s-tab> <c-p>
         map window insert <tab> <c-n>
+        map window insert <s-tab> <c-p>
     }
 }
 hook global InsertCompletionHide .* %{
@@ -74,32 +96,56 @@ hook global InsertCompletionHide .* %{
 # Trim trailing whitespace on save.
 hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
 
-# Source the plugin manager
+# Plugin manager and plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-
-plug "alexherbo2/move-line.kak"
-plug "alexherbo2/toggle-highlighter.kak"
-plug "andreyorst/fzf.kak"
 plug "andreyorst/plug.kak" noload
-plug "andreyorst/smarttab.kak"
-plug "ul/kak-lsp"
 
-# plugin: fzf.kak
-hook global ModuleLoaded fzf %{
+plug "alexherbo2/move-line.kak" config %{
+    map global normal <a-up> ':move-line-above<ret>'
+    map global normal <a-down> ':move-line-below<ret>'
+}
+
+plug "alexherbo2/toggle-highlighter.kak" config %{
+    map global user l ': toggle-highlighter global/line-numbers number-lines -separator ''  ''<ret>' -docstring 'toggle line numbers'
+    map global user z ': toggle-highlighter buffer/word-wrap wrap -word -indent<ret>' -docstring 'toggle word wrap'
+}
+
+plug "andreyorst/fzf.kak" config %{
+    map global normal <c-p> ': fzf-mode<ret>'
+    map global user p ': fzf-mode<ret>' -docstring 'fzf mode'
+} defer "fzf" %{
     set-option global fzf_file_command 'fd'
 }
 
-# plugin: smarttab
-hook global WinCreate .* expandtab
-hook global ModuleLoaded smarttab %{
+plug "andreyorst/smarttab.kak" config %{
+    hook global WinCreate .* expandtab
+} defer "smarttab" %{
     set-option global softtabstop 4
 }
 
-# plugin: kak-lsp
-hook global WinSetOption filetype=rust %{
-    lsp-enable-window
+plug 'delapouite/kakoune-buffers' config %{
+    map global normal b ': enter-buffers-mode<ret>' -docstring 'buffers'
+    map global normal B ': enter-user-mode -lock buffers<ret>' -docstring 'buffers (lock)'
+}
 
-    set-face window Reference default,default+r
-    set-face window DiagnosticWarning yellow,default+ub
-    set-face window DiagnosticError red,default+ub
+# Dim cursor if window is not focused
+plug "greenfork/active-window.kak"
+
+# Note: kak-lsp executable is installed using package manager
+plug "ul/kak-lsp" config %{
+    map global normal <c-k> ': enter-user-mode lsp<ret>'
+    set-option global lsp_cmd "kak-lsp -s %val{session} --config %val{config}/kak-lsp.toml"
+
+    hook global WinSetOption filetype=rust %{
+        lsp-enable-window
+
+        set-face window Reference default,default+r
+        set-face window DiagnosticWarning yellow,default+ub
+        set-face window DiagnosticError red,default+ub
+
+        set-option window formatcmd 'rustfmt'
+
+        set-face window comment bright-black@comment
+        remove-highlighter shared/rust/code/field
+    }
 }
