@@ -136,15 +136,15 @@
     "rust-analyzer.inlayHints.typeHints": false,
 
     "editor.tokenColorCustomizations": {
-        "[Solarized Dark Improved]": {
-            "textMateRules": [
-                {"scope": "storage", "settings": {"fontStyle": ""}},
-                {"scope": "meta", "settings": {"fontStyle": ""}},
-            ],
-        }
+        "textMateRules": [
+            {"scope": "storage", "settings": {"fontStyle": ""}},
+            {"scope": "meta", "settings": {"fontStyle": ""}},
+        ],
     },
 
+    "dance.insertMode.lineHighlight": "editor.danceLineHighlightBackground",
     "dance.normalMode.cursorStyle": "block",
+    "dance.normalMode.lineHighlight": null,
     "dance.normalMode.lineNumbers": "on",
 
     // Automatically added
