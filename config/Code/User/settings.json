@@ -9,7 +9,8 @@
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
     "editor.codeLens": false,
-    "editor.cursorSurroundingLines": 3,
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.cursorSurroundingLines": 15,
     "editor.dragAndDrop": false,
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
@@ -40,7 +41,7 @@
         "**/CVS": true,
         "**/target": true,
     },
-    "files.hotExit": "onExit",
+    "files.hotExit": "onExitAndWindowClose",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
 
@@ -72,6 +73,7 @@
     "workbench.settings.openDefaultKeybindings": false,
     "workbench.settings.openDefaultSettings": false,
     "workbench.startupEditor": "none",
+    "workbench.tree.renderIndentGuides": "always",
 
     "[elixir]": {
         "editor.insertSpaces": true,
@@ -97,33 +99,19 @@
     "[markdown]": {
         "editor.wordWrap": "bounded"
     },
+    "[plaintext]": {
+        "files.trimTrailingWhitespace": false,
+    },
 
     // Extension settings
 
     "activitusbar.views": [
-        {
-            "name": "explorer",
-            "octicon": "file-text"
-        },
-        {
-            "name": "search",
-            "octicon": "search"
-        },
-        {
-            "name": "scm",
-            "octicon": "repo-forked"
-        },
-        {
-            "name": "debug",
-            "octicon": "bug"
-        },
-        {
-            "name": "extensions",
-            "octicon": "package"
-        },
-        {
-            "name": ""
-        }
+        {"name": "explorer", "octicon": "file-text"},
+        {"name": "search", "octicon": "search"},
+        {"name": "scm", "octicon": "repo-forked"},
+        {"name": "debug", "octicon": "bug"},
+        {"name": "extensions", "octicon": "package"},
+        {"name": ""},
     ],
 
     "C_Cpp.intelliSenseEngine": "Default",
@@ -135,6 +123,81 @@
     "rust-analyzer.inlayHints.parameterHints": false,
     "rust-analyzer.inlayHints.typeHints": false,
 
+    "macros": {
+        "noop": [],
+
+        // Copy line down and comment out the original line
+        "copyLinesDown.comment": [
+            "editor.action.addCommentLine",
+            "editor.action.copyLinesDownAction",
+            "editor.action.removeCommentLine",
+        ],
+
+        "scroll.up.halfPage": [
+            {
+                "command": "editorScroll",
+                "args": { "to": "up", "by": "halfPage", "value": 1, "revealCursor": true},
+            },
+            {
+                "command": "cursorMove",
+                "args": { "to": "viewPortCenter" },
+            },
+        ],
+
+        "scroll.down.halfPage": [
+            {
+                "command": "editorScroll",
+                "args": { "to": "down", "by": "halfPage", "value": 1, "revealCursor": true},
+            },
+            {
+                "command": "cursorMove",
+                "args": { "to": "viewPortCenter" },
+            },
+        ],
+
+        "searchWord": [
+            {
+                "command": "dance.objects.performSelection",
+                "args": { "object": "word", "action": "select", "inner": true },
+            },
+            "dance.search.selection",
+        ],
+
+        "searchWord.smart": [
+            {
+                "command": "dance.objects.performSelection",
+                "args": { "object": "word", "action": "select", "inner": true },
+            },
+            "dance.search.selection.smart",
+        ],
+
+        "selectArgs": [
+            {
+                "command": "dance.objects.performSelection",
+                "args": { "object": "parens", "action": "select", "inner": true },
+            },
+            {
+                "command": "dance.split",
+                "args": { "input": ",\\s*" },
+            },
+        ],
+
+        "dance.normal": [
+            "closeParameterHints",
+            "hideSuggestWidget",
+            "dance.set.normal",
+        ],
+    },
+
+    "workbench.colorCustomizations": {
+        "[Solarized Light Improved]": {
+            "editor.dance.lineHighlightBackground": "#797d6428",
+        },
+        "[Solarized Dark Improved]": {
+            "editor.dance.lineHighlightBackground": "#105a6b28",
+        }
+    },
+
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {"scope": "storage", "settings": {"fontStyle": ""}},
@@ -142,10 +205,10 @@
         ],
     },
 
-    "dance.insertMode.lineHighlight": "editor.danceLineHighlightBackground",
     "dance.normalMode.cursorStyle": "block",
-    "dance.normalMode.lineHighlight": null,
+    "dance.normalMode.lineHighlight": "editor.dance.lineHighlightBackground",
     "dance.normalMode.lineNumbers": "on",
+    "dance.selectionBehavior": "caret",
 
     // Automatically added
 
