@@ -30,6 +30,7 @@
     { "key": "ctrl+q",                 "command": "-workbench.action.quit" },
     { "key": "ctrl+shift+.",           "command": "-breadcrumbs.toggleToOn" },
     { "key": "ctrl+w",                 "command": "-workbench.action.closeWindow",           "when": "!editorIsOpen && !multipleEditorGroups" },
+    { "key": "ctrl+shift+w",           "command": "-workbench.action.closeWindow" },
     { "key": "f11",                    "command": "-workbench.action.toggleFullScreen" },
 
     // Tab navigation
@@ -95,11 +96,7 @@
     { "key": "alt+shift+6",  "command": "dance.macros.record.stop", "when": "editorTextFocus && dance.mode == 'normal'" },
     { "key": "shift+6",      "command": "dance.macros.play", "when": "editorTextFocus && dance.mode == 'normal'" },
 
-    { "key": ", s",          "command": "editor.action.sortLinesAscending", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": ", shift+s",    "command": "editor.action.sortLinesDescending", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": ", a",          "command": "macros.selectArgs", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": ", d",          "command": "macros.copyLinesDown.comment", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": ", z",          "command": "editor.action.toggleWordWrap", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": ",",            "command": "dance.openMenu", "args": { "menu": "user" }, "when": "editorTextFocus && dance.mode == 'normal'" },
 
     // Prevent keys with no bindings from inserting characters in normal mode
     // { "key": "enter",        "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal'" },

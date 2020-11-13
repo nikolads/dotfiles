@@ -10,7 +10,7 @@
     "editor.autoClosingQuotes": "never",
     "editor.codeLens": false,
     "editor.copyWithSyntaxHighlighting": false,
-    "editor.cursorSurroundingLines": 15,
+    "editor.cursorSurroundingLines": 999,
     "editor.dragAndDrop": false,
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
@@ -34,11 +34,8 @@
         "*.toml": "toml",
     },
     "files.exclude": {
-        "**/.DS_Store": true,
         "**/.git": true,
         "**/.hg": true,
-        "**/.svn": true,
-        "**/CVS": true,
         "**/target": true,
     },
     "files.hotExit": "onExitAndWindowClose",
@@ -85,6 +82,9 @@
         "files.trimTrailingWhitespace": true,
         "files.insertFinalNewline": true
     },
+    "[haskell]": {
+        "editor.tabSize": 2,
+    },
     "[html]": {
         "editor.tabSize": 2,
     },
@@ -105,6 +105,10 @@
 
     // Extension settings
 
+    "remote.extensionKind": {
+        "gregoire.dance": [ "ui" ]
+    },
+
     "activitusbar.views": [
         {"name": "explorer", "octicon": "file-text"},
         {"name": "search", "octicon": "search"},
@@ -116,12 +120,36 @@
 
     "C_Cpp.intelliSenseEngine": "Default",
 
+    "dance.normalMode.cursorStyle": "block",
+    "dance.normalMode.lineHighlight": "editor.danceLineHighlightBackground",
+    "dance.normalMode.lineNumbers": "on",
+    "dance.selectionBehavior": "caret",
+    "dance.menus": {
+        "user": {
+            "items": {
+                "s": { "text": "sort asc", "command": "editor.action.sortLinesAscending" },
+                "S": { "text": "sort desc", "command": "editor.action.sortLinesDescending" },
+                "z": { "text": "word wrap", "command": "editor.action.toggleWordWrap" },
+                "/": { "text": "comment line", "command": "editor.action.commentLine" },
+
+                // temporary
+                "a": { "text": "select args", "command": "macros.selectArgs" },
+                "d": { "text": "copy & comment", "command": "macros.copyLinesDown.comment" },
+            }
+        },
+    },
+
+    "languageServerHaskell.hieExecutablePath": "/usr/bin/hie-wrapper",
+
     "latex-workshop.view.pdf.viewer": "tab",
 
-    "rust-analyzer.updates.channel": "stable",
+    "julia.enableTelemetry": false,
+
+    "rust-analyzer.assist.importMergeBehaviour": "last",
     "rust-analyzer.inlayHints.chainingHints": false,
     "rust-analyzer.inlayHints.parameterHints": false,
     "rust-analyzer.inlayHints.typeHints": false,
+    "rust-analyzer.updates.channel": "stable",
 
     "macros": {
         "noop": [],
@@ -134,52 +162,34 @@
         ],
 
         "scroll.up.halfPage": [
-            {
-                "command": "editorScroll",
-                "args": { "to": "up", "by": "halfPage", "value": 1, "revealCursor": true},
-            },
-            {
-                "command": "cursorMove",
-                "args": { "to": "viewPortCenter" },
-            },
+            {"command": "cursorMove", "args": {"to": "up", "by": "wrappedLine", "value": 30}},
         ],
 
         "scroll.down.halfPage": [
-            {
-                "command": "editorScroll",
-                "args": { "to": "down", "by": "halfPage", "value": 1, "revealCursor": true},
-            },
-            {
-                "command": "cursorMove",
-                "args": { "to": "viewPortCenter" },
-            },
+            {"command": "cursorMove", "args": {"to": "down", "by": "wrappedLine", "value": 30}},
+        ],
+
+        "scroll.up.halfPage.select": [
+            {"command": "cursorMove", "args": {"to": "up", "by": "wrappedLine", "value": 30, "select": true}},
+        ],
+
+        "scroll.down.halfPage.select": [
+            {"command": "cursorMove", "args": {"to": "down", "by": "wrappedLine", "value": 30, "select": true}},
         ],
 
         "searchWord": [
-            {
-                "command": "dance.objects.performSelection",
-                "args": { "object": "word", "action": "select", "inner": true },
-            },
+            {"command": "dance.objects.performSelection", "args": {"object": "word", "action": "select", "inner": true}},
             "dance.search.selection",
         ],
 
         "searchWord.smart": [
-            {
-                "command": "dance.objects.performSelection",
-                "args": { "object": "word", "action": "select", "inner": true },
-            },
+            {"command": "dance.objects.performSelection", "args": {"object": "word", "action": "select", "inner": true}},
             "dance.search.selection.smart",
         ],
 
         "selectArgs": [
-            {
-                "command": "dance.objects.performSelection",
-                "args": { "object": "parens", "action": "select", "inner": true },
-            },
-            {
-                "command": "dance.split",
-                "args": { "input": ",\\s*" },
-            },
+            {"command": "dance.objects.performSelection", "args": {"object": "parens", "action": "select", "inner": true}},
+            {"command": "dance.split", "args": {"input": ",\\s*"}},
         ],
 
         "dance.normal": [
@@ -187,30 +197,87 @@
             "hideSuggestWidget",
             "dance.set.normal",
         ],
-    },
-
-    "workbench.colorCustomizations": {
-        "[Solarized Light Improved]": {
-            "editor.dance.lineHighlightBackground": "#797d6428",
-        },
-        "[Solarized Dark Improved]": {
-            "editor.dance.lineHighlightBackground": "#105a6b28",
-        }
-    },
+   },
 
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {"scope": "storage", "settings": {"fontStyle": ""}},
             {"scope": "meta", "settings": {"fontStyle": ""}},
         ],
+        "[Gruvbox Material Dark]": {
+            "textMateRules": [
+                {"scope": "source", "settings": {"foreground": "#bfac8a"}},
+                {"scope": "variable", "settings": {"foreground": "#bfac8a"}},
+                {"scope": "punctuation", "settings": {"foreground": "#bfac8a" }},
+                {"scope": "meta.function-call.c", "settings": {"foreground": "#bfac8a" }},
+
+                {"scope": "keyword.operator", "settings": {"foreground": "#928374" }},
+                {"scope": "punctuation.brackets.angle.rust", "settings": {"foreground": "#928374" }},
+                {"scope": "punctuation.semi", "settings": {"foreground": "#928374" }},
+                {"scope": "punctuation.comma", "settings": {"foreground": "#928374" }},
+
+                {"scope": "storage.type.rust", "settings": {"foreground": "#ea6962" }},
+                {"scope": "entity.name.function", "settings": {"foreground": "#7daea3" }},
+                {"scope": "entity.name.function.macro", "settings": {"foreground": "#ea6962" }},
+                {"scope": "entity.name.type", "settings": {"foreground": "#e78a4e" }},
+            ],
+        }
     },
 
-    "dance.normalMode.cursorStyle": "block",
-    "dance.normalMode.lineHighlight": "editor.dance.lineHighlightBackground",
-    "dance.normalMode.lineNumbers": "on",
-    "dance.selectionBehavior": "caret",
+    "editor.semanticTokenColorCustomizations": {
+        "[Gruvbox Material Dark]": {
+            "rules": {
+                "interface": "#ea6962",
+                "macro": "#ea6962",
 
-    // Automatically added
+                "keyword": "#ea6962",
 
-    "workbench.colorTheme": "Solarized Dark Improved",
+                "variable": "#bfac8a",
+                "property": "#bfac8a",
+                "parameter": "#bfac8a",
+                "enumMember": "#bfac8a",
+
+                // "punctuation": "#928374",
+                "operator": "#928374",
+
+                "builtinType": "#e78a4e",
+                "struct": "#e78a4e",
+                "class": "#e78a4e",
+                "enum": "#e78a4e",
+
+                "function": "#7daea3",
+                "method": "#7daea3",
+
+                "*.constant": "#d3869b",
+                "boolean": "#d3869b",
+
+                "attribute": "#d3869b",
+                "function.attribute": "#d3869b",
+                "function.declaration": "#a9b665",
+                "variable.declaration": "#a9b665",
+            },
+        }
+    },
+
+    "gruvboxMaterial.darkContrast": "soft",
+    "gruvboxMaterial.darkPalette": "material",
+    "gruvboxMaterial.darkSelection": "green",
+    "gruvboxMaterial.darkWorkbench": "flat",
+
+    "workbench.colorCustomizations": {
+        "[Solarized Dark Improved]": {
+            "editor.danceLineHighlightBackground": "#105а6b28",
+        },
+        "[Solarized Light Improved]": {
+            "editor.danceLineHighlightBackground": "#797d6428",
+        },
+        "[Gruvbox Material Dark]": {
+            "editor.foreground": "#bfac8a", // original #d4be98
+            "editorCursor.foreground": "#bfac8a",
+            "editor.lineHighlightBackground": "#32302f",
+            "editor.danceLineHighlightBackground": "#403c3a70",
+        }
+    },
+
+    "workbench.colorTheme": "Gruvbox Material Dark",
 }
