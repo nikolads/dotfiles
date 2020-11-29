@@ -1,16 +1,19 @@
 [
     /// Vscode
-    { "key": "shift+f5",               "command": "workbench.action.reloadWindow" },
-    { "key": "shift+f12",              "command": "workbench.action.toggleDevTools" },
-    { "key": "f1",                     "command": "editor.action.showHover" },
-    { "key": "ctrl+shift+=",           "command": "editor.action.fontZoomIn" },
-    { "key": "ctrl+numpad0",           "command": "editor.action.fontZoomReset" },
-    { "key": "ctrl+numpad_subtract",   "command": "editor.action.fontZoomOut" },
-    { "key": "ctrl+numpad_add",        "command": "editor.action.fontZoomIn" },
-    { "key": "ctrl+0",                 "command": "editor.action.fontZoomReset" },
-    { "key": "ctrl+=",                 "command": "editor.action.fontZoomIn" },
     { "key": "ctrl+-",                 "command": "editor.action.fontZoomOut" },
+    { "key": "ctrl+=",                 "command": "editor.action.fontZoomIn" },
+    { "key": "ctrl+0",                 "command": "editor.action.fontZoomReset" },
+    { "key": "ctrl+f",                 "command": "search.action.openNewEditor" },
+    { "key": "ctrl+numpad_add",        "command": "editor.action.fontZoomIn" },
+    { "key": "ctrl+numpad_subtract",   "command": "editor.action.fontZoomOut" },
+    { "key": "ctrl+numpad0",           "command": "editor.action.fontZoomReset" },
+    { "key": "ctrl+shift+=",           "command": "editor.action.fontZoomIn" },
     { "key": "ctrl+shift+d",           "command": "editor.action.copyLinesDownAction" },
+    { "key": "f1",                     "command": "editor.action.showHover" },
+    { "key": "shift+f12",              "command": "workbench.action.toggleDevTools" },
+    { "key": "shift+f5",               "command": "workbench.action.reloadWindow" },
+    { "key": "f12",                    "command": "editor.action.peekDefinition" },
+    { "key": "shift+f12",              "command": "editor.action.revealDefinition" },
 
     // Remove keybindings that clash with other stuff
     { "key": "ctrl+g",                 "command": "-workbench.action.gotoLine" },
@@ -25,8 +28,10 @@
     { "key": "ctrl+shift+d",           "command": "-activitusbar.showDebugView" },
 
     // Remove keybindgs I don't use
+    { "key": "ctrl+,",                 "command": "-workbench.action.openSettings" },
     { "key": "ctrl+[",                 "command": "-editor.action.outdentLines",             "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+]",                 "command": "-editor.action.indentLines",              "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+m",                 "command": "-editor.action.toggleTabFocusMode" },
     { "key": "ctrl+q",                 "command": "-workbench.action.quit" },
     { "key": "ctrl+shift+.",           "command": "-breadcrumbs.toggleToOn" },
     { "key": "ctrl+w",                 "command": "-workbench.action.closeWindow",           "when": "!editorIsOpen && !multipleEditorGroups" },
@@ -34,41 +39,30 @@
     { "key": "f11",                    "command": "-workbench.action.toggleFullScreen" },
 
     // Tab navigation
-    { "key": "alt+w ctrl+down",        "command": "workbench.action.moveEditorToBelowGroup" },
-    { "key": "alt+w ctrl+left",        "command": "workbench.action.moveEditorToLeftGroup" },
-    { "key": "alt+w ctrl+right",       "command": "workbench.action.moveEditorToRightGroup" },
-    { "key": "alt+w ctrl+shift+down",  "command": "workbench.action.moveActiveEditorGroupDown" },
-    { "key": "alt+w ctrl+shift+left",  "command": "workbench.action.moveActiveEditorGroupLeft" },
-    { "key": "alt+w ctrl+shift+right", "command": "workbench.action.moveActiveEditorGroupRight" },
-    { "key": "alt+w ctrl+shift+up",    "command": "workbench.action.moveActiveEditorGroupUp" },
-    { "key": "alt+w ctrl+up",          "command": "workbench.action.moveEditorToAboveGroup" },
-    { "key": "alt+w down",             "command": "workbench.action.focusBelowGroup" },
-    // { "key": "alt+w h",                "command": "workbench.action.splitEditorDown" },
-    { "key": "alt+w left",             "command": "workbench.action.focusLeftGroup" },
-    { "key": "alt+w h",                "command": "workbench.action.focusLeftGroup" },
-    { "key": "alt+w right",            "command": "workbench.action.focusRightGroup" },
-    { "key": "alt+w l",                "command": "workbench.action.focusRightGroup" },
-    { "key": "alt+w shift+down",       "command": "workbench.action.moveEditorToBelowGroup" },
-    { "key": "alt+w shift+left",       "command": "workbench.action.moveEditorToLeftGroup" },
-    { "key": "alt+w shift+right",      "command": "workbench.action.moveEditorToRightGroup" },
-    { "key": "alt+w shift+up",         "command": "workbench.action.moveEditorToAboveGroup" },
-    { "key": "alt+w up",               "command": "workbench.action.focusAboveGroup" },
-    // { "key": "alt+w v",                "command": "workbench.action.splitEditorRight" },
     { "key": "ctrl+shift+tab",         "command": "workbench.action.previousEditorInGroup" },
     { "key": "ctrl+tab",               "command": "workbench.action.nextEditorInGroup" },
+    { "key": "ctrl+alt+left",          "command": "workbench.action.focusLeftGroup" },
+    { "key": "ctrl+alt+right",         "command": "workbench.action.focusRightGroup" },
+    { "key": "ctrl+shift+alt+left",    "command": "workbench.action.moveEditorToLeftGroup" },
+    { "key": "ctrl+shift+alt+right",   "command": "workbench.action.moveEditorToRightGroup" },
 
     /// Dance
     { "key": "escape",       "command": "-dance.macros.record.stop" },
     { "key": "escape",       "command": "-dance.set.normal" },
     { "key": "escape",       "command": "macros.dance.normal", "when": "editorTextFocus" },
-    { "key": "enter",        "command": "dance.set.insert", "when": "editorTextFocus && dance.mode == 'normal'" },
+    // { "key": "enter",        "command": "dance.set.insert", "when": "editorTextFocus && dance.mode == 'normal'" },
 
-    { "key": "shift+q",      "command": "-dance.macro.record.start" },
     { "key": "q",            "command": "-dance.macro.play" },
+    { "key": "shift+q",      "command": "-dance.macro.record.start" },
     { "key": "q",            "command": "dance.select.word.previous", "when": "editorTextFocus && dance.mode == 'normal'" },
     { "key": "shift+q",      "command": "dance.select.word.previous.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": "alt+q",        "command": "dance.select.word.alt.previous", "when": "editorTextFocus && dance.mode == 'normal'" },
-    { "key": "shift+alt+q",  "command": "dance.select.word.alt.previous.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
+
+    { "key": "alt+q",        "command": "macros.dance.select.partWord.previous", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+shift+q",  "command": "macros.dance.select.partWord.previous.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+w",        "command": "macros.dance.select.partWord", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+shift+w",  "command": "macros.dance.select.partWord.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+e",        "command": "macros.dance.select.partWord", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "alt+shift+e",  "command": "macros.dance.select.partWord.extend", "when": "editorTextFocus && dance.mode == 'normal'" },
 
     { "key": "d",            "command": "-dance.delete.yank" },
     { "key": "alt+d",        "command": "-dance.delete.noYank" },
@@ -98,8 +92,12 @@
 
     { "key": ",",            "command": "dance.openMenu", "args": { "menu": "user" }, "when": "editorTextFocus && dance.mode == 'normal'" },
 
+    { "key": "b",            "command": "dance.openMenu", "args": {"menu": "buffer"}, "when": "editorTextFocus && dance.mode == 'normal'"},
+
     // Prevent keys with no bindings from inserting characters in normal mode
-    // { "key": "enter",        "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal'" },
+    { "key": "enter",        "command": "openReference", "when": "editorTextFocus && dance.mode == 'normal' && inReferenceSearchEditor" },
+    { "key": "ctrl+enter",   "command": "openReferenceToSide", "when": "editorTextFocus && dance.mode == 'normal' && inReferenceSearchEditor" },
+    { "key": "enter",        "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal' && !inReferenceSearchEditor" },
     { "key": "backspace",    "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal'" },
     { "key": "\\",           "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal'" },
     { "key": "shift+d",      "command": "macros.noop", "when": "editorTextFocus && dance.mode == 'normal'" },
@@ -116,6 +114,8 @@
 
     { "key": "pageup",       "command": "macros.scroll.up.halfPage" },
     { "key": "pagedown",     "command": "macros.scroll.down.halfPage" },
+    { "key": "shift+pageup", "command": "macros.scroll.up.halfPage.select" },
+    { "key": "shift+pagedown", "command": "macros.scroll.down.halfPage.select" },
 
     { "key": "ctrl+v",       "command": "-dance.tmp.normal" },
     { "key": "ctrl+v",       "command": "-dance.tmp.insert" },
@@ -132,6 +132,4 @@
     { "key": "ctrl+space",   "command": "editor.action.triggerSuggest", "when": "dance.mode == 'insert' && editorHasCompletionItemProvider && textInputFocus && !editorReadonly" },
 
     { "key": "ctrl+f",       "command": "-actions.find" },
-    { "key": "ctrl+f",       "command": "macros.searchWord.smart" },
-    { "key": "ctrl+alt+f",   "command": "macros.searchWord" },
 ]

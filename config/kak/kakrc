@@ -39,6 +39,9 @@ map global normal <c-s-right> 'E'
 map global insert <c-left> '<a-;>b<a-;>;'
 map global insert <c-right> '<a-;>e<a-;>;'
 
+map global normal o 'o<esc>'
+map global normal O 'O<esc>'
+
 map global normal ^ q
 map global normal <a-^> Q
 map global normal q b
@@ -55,6 +58,9 @@ map global normal <c-home> 'gg'
 map global normal <c-end> 'ge'
 map global normal <c-s-home> 'Gg'
 map global normal <c-s-end> 'Ge'
+
+define-command goto-line -params 1 %{ execute-keys %arg{1} 'g' }
+map global goto : '<esc>: goto-line ' -docstring 'line'
 
 #map global normal p '!xsel --output --clipboard<ret>'
 map global normal p '!wl-paste<ret>'
@@ -98,6 +104,10 @@ hook global InsertCompletionHide .* %{
 
 # Trim trailing whitespace on save.
 hook global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
+
+hook global WinSetOption filetype=json %{ set-option window formatcmd 'python3 -m json.tool' }
+hook global WinSetOption filetype=rust %{ set-option window formatcmd 'rustfmt' }
+hook global WinSetOption filetype=xml %{ set-option window formatcmd 'xmllint --format -' }
 
 # Plugin manager and plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
@@ -145,8 +155,6 @@ plug "ul/kak-lsp" config %{
         set-face window Reference default,default+r
         set-face window DiagnosticWarning yellow,default+ub
         set-face window DiagnosticError red,default+ub
-
-        set-option window formatcmd 'rustfmt'
 
         set-face window comment bright-black@comment
         remove-highlighter shared/rust/code/field

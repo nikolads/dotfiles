@@ -47,6 +47,26 @@ gsettings set org.gnome.shell.keybindings switch-to-application-9 "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-group "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
 
+## Remove shortcuts which don't use the `Super` key
+gsettings set org.gnome.desktop.wm.keybindings cycle-group "[]"
+gsettings set org.gnome.desktop.wm.keybindings cycle-group-backward "[]"
+gsettings set org.gnome.desktop.wm.keybindings cycle-panels "[]"
+gsettings set org.gnome.desktop.wm.keybindings cycle-panels-backward "[]"
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows "[]"
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "[]"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "[]"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "[]"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "[]"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-panels "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-panels-backward "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Super>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Super>Tab']"
+
 ## Set custom shortcuts
 ## Note - the list must be appended to
 # gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']

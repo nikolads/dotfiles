@@ -4,6 +4,7 @@
     "breadcrumbs.filePath": "last",
 
     "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.maxComputationTime": 0,
     "diffEditor.renderSideBySide": true,
 
     "editor.autoClosingBrackets": "never",
@@ -15,6 +16,7 @@
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
+    "editor.peekWidgetDefaultFocus": "editor",
     "editor.renderControlCharacters": true,
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "none",
@@ -46,6 +48,8 @@
 
     "html.autoClosingTags": false,
 
+    "search.searchEditor.reusePriorSearchConfiguration": true,
+
     "update.mode": "none",
 
     "telemetry.enableCrashReporter": false,
@@ -66,6 +70,7 @@
 
     "workbench.activityBar.visible": false,
     "workbench.editor.enablePreview": false,
+    "workbench.editor.pinnedTabSizing": "compact",
     "workbench.iconTheme": "vs-seti",
     "workbench.settings.openDefaultKeybindings": false,
     "workbench.settings.openDefaultSettings": false,
@@ -106,12 +111,13 @@
     // Extension settings
 
     "remote.extensionKind": {
-        "gregoire.dance": [ "ui" ]
+        "gregoire.dance": ["ui"],
     },
 
     "activitusbar.views": [
         {"name": "explorer", "octicon": "file-text"},
         {"name": "search", "octicon": "search"},
+        {"name": "references", "octicon": "references" },
         {"name": "scm", "octicon": "repo-forked"},
         {"name": "debug", "octicon": "bug"},
         {"name": "extensions", "octicon": "package"},
@@ -119,6 +125,7 @@
     ],
 
     "C_Cpp.intelliSenseEngine": "Default",
+    "C_Cpp.dimInactiveRegions": true,
 
     "dance.normalMode.cursorStyle": "block",
     "dance.normalMode.lineHighlight": "editor.danceLineHighlightBackground",
@@ -137,19 +144,66 @@
                 "d": { "text": "copy & comment", "command": "macros.copyLinesDown.comment" },
             }
         },
+        "buffer": {
+            "items": {
+                "d": {
+                    "text": "close",
+                    "command": "workbench.action.closeActiveEditor",
+                },
+                "D": {
+                    "text": "close all",
+                    "command": "workbench.action.closeAllEditors",
+                },
+                "h": {
+                    "text": "focus left group",
+                    "command": "workbench.action.focusLeftGroup",
+                },
+                "l": {
+                    "text": "focus right group",
+                    "command": "workbench.action.focusRightGroup",
+                },
+                "H": {
+                    "text": "move to left group",
+                    "command": "workbench.action.moveEditorToLeftGroup",
+                },
+                "L": {
+                    "text": "move to right group",
+                    "command": "workbench.action.moveEditorToRightGroup",
+                },
+                "o": {
+                    "text": "switch header/source",
+                    "command": "C_Cpp.SwitchHeaderSource",
+                },
+                "s": {
+                    "text": "settings",
+                    "command": "workbench.action.openSettingsJson",
+                },
+                "k": {
+                    "text": "keybindings",
+                    "command": "workbench.action.openGlobalKeybindingsFile",
+                },
+                "S": {
+                    "text": "settings (default)",
+                    "command": "workbench.action.openRawDefaultSettings",
+                },
+                "K": {
+                    "text": "keybindings (default)",
+                    "command": "workbench.action.openDefaultKeybindingsFile",
+                },
+            }
+        },
     },
+
+    "gruvboxMaterial.darkContrast": "soft",
+    "gruvboxMaterial.darkPalette": "material",
+    "gruvboxMaterial.darkSelection": "green",
+    "gruvboxMaterial.darkWorkbench": "flat",
+
+    "julia.enableTelemetry": false,
 
     "languageServerHaskell.hieExecutablePath": "/usr/bin/hie-wrapper",
 
     "latex-workshop.view.pdf.viewer": "tab",
-
-    "julia.enableTelemetry": false,
-
-    "rust-analyzer.assist.importMergeBehaviour": "last",
-    "rust-analyzer.inlayHints.chainingHints": false,
-    "rust-analyzer.inlayHints.parameterHints": false,
-    "rust-analyzer.inlayHints.typeHints": false,
-    "rust-analyzer.updates.channel": "stable",
 
     "macros": {
         "noop": [],
@@ -177,27 +231,46 @@
             {"command": "cursorMove", "args": {"to": "down", "by": "wrappedLine", "value": 30, "select": true}},
         ],
 
-        "searchWord": [
-            {"command": "dance.objects.performSelection", "args": {"object": "word", "action": "select", "inner": true}},
-            "dance.search.selection",
-        ],
-
-        "searchWord.smart": [
-            {"command": "dance.objects.performSelection", "args": {"object": "word", "action": "select", "inner": true}},
-            "dance.search.selection.smart",
-        ],
-
         "selectArgs": [
             {"command": "dance.objects.performSelection", "args": {"object": "parens", "action": "select", "inner": true}},
             {"command": "dance.split", "args": {"input": ",\\s*"}},
         ],
 
         "dance.normal": [
+            "closeDirtyDiff",
             "closeParameterHints",
+            "closeReferenceSearch",
             "hideSuggestWidget",
             "dance.set.normal",
         ],
-   },
+
+        "dance.select.partWord": [
+            "dance.selections.reduce",
+            "cursorWordPartRightSelect",
+        ],
+        "dance.select.partWord.extend": [
+            "cursorWordPartRightSelect",
+        ],
+        "dance.select.partWord.previous": [
+            "dance.selections.reduce",
+            "cursorWordPartLeftSelect",
+        ],
+        "dance.select.partWord.previous.extend": [
+            "cursorWordPartLeftSelect",
+        ],
+
+    },
+
+    "rust-analyzer.assist.importMergeBehaviour": "last",
+    "rust-analyzer.inlayHints.chainingHints": false,
+    "rust-analyzer.inlayHints.parameterHints": false,
+    "rust-analyzer.inlayHints.typeHints": false,
+    "rust-analyzer.updates.channel": "stable",
+
+    "trailing-spaces.highlightCurrentLine": false,
+
+    "xmlTools.enableXmlTreeView": false,
+    "xmlTools.splitXmlnsOnFormat": false,
 
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -215,7 +288,23 @@
                 {"scope": "punctuation.brackets.angle.rust", "settings": {"foreground": "#928374" }},
                 {"scope": "punctuation.semi", "settings": {"foreground": "#928374" }},
                 {"scope": "punctuation.comma", "settings": {"foreground": "#928374" }},
+                {"scope": "storage.modifier.reference", "settings": {"foreground": "#928374" }},
+                {"scope": "storage.modifier.pointer", "settings": {"foreground": "#928374" }},
 
+                {"scope": "constant.character.escape.cpp", "settings": {"foreground": "#a9b665"}},
+                {"scope": "keyword.other.using.directive.cpp", "settings": {"foreground": "#ea6962" }},
+                {"scope": "punctuation.definition.string.begin.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "punctuation.definition.string.end.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "storage.type.built-in.primitive.cpp", "settings": {"foreground": "#e78a4e" }},
+                {"scope": "storage.type.namespace.directive.cpp", "settings": {"foreground": "#ea6962" }},
+                {"scope": "storage.type.struct.cpp", "settings": {"foreground": "#ea6962" }},
+                {"scope": "string.quoted.double.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "string.quoted.double.include.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "string.quoted.other.lt-gt.include.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "string.quoted.single.cpp", "settings": {"foreground": "#d8a657" }},
+                {"scope": "storage.type.namespace.definition.cpp", "settings": {"foreground": "#ea6962" }},
+
+                {"scope": "storage.modifier", "settings": {"foreground": "#ea6962" }},
                 {"scope": "storage.type.rust", "settings": {"foreground": "#ea6962" }},
                 {"scope": "entity.name.function", "settings": {"foreground": "#7daea3" }},
                 {"scope": "entity.name.function.macro", "settings": {"foreground": "#ea6962" }},
@@ -228,10 +317,12 @@
         "[Gruvbox Material Dark]": {
             "rules": {
                 "interface": "#ea6962",
-                "macro": "#ea6962",
+                "macro": "#d3869b",
+                "macro:rust": "#ea6962",
 
                 "keyword": "#ea6962",
 
+                "namespace": "#89b482",
                 "variable": "#bfac8a",
                 "property": "#bfac8a",
                 "parameter": "#bfac8a",
@@ -240,6 +331,7 @@
                 // "punctuation": "#928374",
                 "operator": "#928374",
 
+                "type": "#e78a4e",
                 "builtinType": "#e78a4e",
                 "struct": "#e78a4e",
                 "class": "#e78a4e",
@@ -250,6 +342,7 @@
 
                 "*.constant": "#d3869b",
                 "boolean": "#d3869b",
+                "string": "#d8a657",
 
                 "attribute": "#d3869b",
                 "function.attribute": "#d3869b",
@@ -259,25 +352,23 @@
         }
     },
 
-    "gruvboxMaterial.darkContrast": "soft",
-    "gruvboxMaterial.darkPalette": "material",
-    "gruvboxMaterial.darkSelection": "green",
-    "gruvboxMaterial.darkWorkbench": "flat",
-
     "workbench.colorCustomizations": {
-        "[Solarized Dark Improved]": {
-            "editor.danceLineHighlightBackground": "#105а6b28",
-        },
         "[Solarized Light Improved]": {
-            "editor.danceLineHighlightBackground": "#797d6428",
+            "editor.dance.lineHighlightBackground": "#797d6428",
+        },
+        "[Solarized Dark Improved]": {
+            "editor.dance.lineHighlightBackground": "#105a6b28",
         },
         "[Gruvbox Material Dark]": {
             "editor.foreground": "#bfac8a", // original #d4be98
             "editorCursor.foreground": "#bfac8a",
             "editor.lineHighlightBackground": "#32302f",
             "editor.danceLineHighlightBackground": "#403c3a70",
-        }
+        },
     },
 
+    // Automatically added
+    "git.ignoreLegacyWarning": true,
+    "editor.largeFileOptimizations": false,
     "workbench.colorTheme": "Gruvbox Material Dark",
 }
