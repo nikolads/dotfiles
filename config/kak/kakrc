@@ -1,6 +1,6 @@
 set-option global tabstop 4
 set-option global indentwidth 4
-set-option global scrolloff 3,3
+set-option global scrolloff 99,3
 
 add-highlighter global/line-numbers number-lines -separator '  '
 set-face global LineNumbers bright-black
@@ -28,7 +28,8 @@ hook global ModeChange ".*:normal" %{
 }
 
 hook global NormalKey y|d|c %{ nop %sh{
-    printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+    # printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+    printf %s "$kak_main_reg_dquote" | wl-copy 1>/dev/null 2>/dev/null
 }}
 
 map global normal <c-left> 'b'
@@ -55,8 +56,10 @@ map global normal <c-end> 'ge'
 map global normal <c-s-home> 'Gg'
 map global normal <c-s-end> 'Ge'
 
-map global normal p '!xsel --output --clipboard<ret>'
-map global normal P '<a-!>xsel --output --clipboard<ret>'
+#map global normal p '!xsel --output --clipboard<ret>'
+map global normal p '!wl-paste<ret>'
+#map global normal P '<a-!>xsel --output --clipboard<ret>'
+map global normal P '<a-!>wl-paste<ret>'
 map global normal R 'dp'
 
 map global normal <a-p> p

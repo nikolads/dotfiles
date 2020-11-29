@@ -1,7 +1,3 @@
-function firefox
-    command firefox $argv >/dev/null 2>/dev/null &
-end
-
 function web
-    firefox $argv
+    env MOZ_ENABLE_WAYLAND=1 firefox $argv >/dev/null 2>/dev/null &
 end

@@ -13,7 +13,7 @@ function help
 end
 
 set light_theme "theme-light-solarized.conf"
-set dark_theme "theme-dark-solarized.conf"
+set dark_theme "theme-dark-gruvbox.conf"
 
 set command $argv[1]
 switch $command
