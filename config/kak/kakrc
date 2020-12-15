@@ -63,9 +63,9 @@ define-command goto-line -params 1 %{ execute-keys %arg{1} 'g' }
 map global goto : '<esc>: goto-line ' -docstring 'line'
 
 #map global normal p '!xsel --output --clipboard<ret>'
-map global normal p '!wl-paste<ret>'
+map global normal p '!wl-paste --no-newline<ret>'
 #map global normal P '<a-!>xsel --output --clipboard<ret>'
-map global normal P '<a-!>wl-paste<ret>'
+map global normal P '<a-!>wl-paste --no-newline<ret>'
 map global normal R 'dp'
 
 map global normal <a-p> p
@@ -86,6 +86,9 @@ map global normal i ';i'
 map global user / ': comment-line<ret>' -docstring 'comment line'
 map global user s '<a-x>|sort<ret>' -docstring 'sort lines ASC'
 map global user <s-s> '<a-x>|sort --reverse<ret>' -docstring 'sort lines DESC'
+
+map global prompt <c-left> <a-b>
+map global prompt <c-right> <a-f>
 
 # Cycle completions with <tab>/<s-tab>.
 # Only in effect if there are completions and the preceeding character is not
