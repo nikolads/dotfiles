@@ -2,12 +2,16 @@ if test -f $HOME/.profile
     source $HOME/.profile
 end
 
+set --export FZF_DEFAULT_OPTS "--color=16"
+
 set fish_greeting
 set fish_prompt_pwd_dir_length 4
 
+bind \cr '__fzf_search_history'
+
 function fish_prompt
     set -l pwd (prompt_pwd)
-    
+
     set -l host (if set --query SSH_CONNECTION
        printf "%s:" (hostname)
     end)
