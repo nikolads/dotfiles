@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+# Don't add "--single-instance" argument for internal commands, like '@' or '+kitten'
+if test (count $argv) -ge 2 && begin; printf %s $argv[1] | string match -r '^(@|\+)' >/dev/null; end
+    /usr/bin/kitty $argv
+else
+    mkdir -p /tmp/kitty
+    /usr/bin/kitty --single-instance $argv
+end

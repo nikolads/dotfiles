@@ -1,0 +1,79 @@
+* {
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 12px;
+    color: #cccccc;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: #323232;
+}
+
+#tags {
+    /*margin-top: 8px;*/
+    /*margin-left: 8px;*/
+    /*padding: 1px;*/
+    /*border: 2px solid #93a1a1;*/ /*base1*/
+}
+
+#tags button {
+    /*margin: 1px;*/
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    /*border: 2px solid #073642;*/ /*base02*/
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#tags button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: #073642; /*base02*/
+}
+
+#tags button.focused {
+    color: #323232;
+    background-color: #7daea3; /*base1*/
+}
+
+#tags button.occupied {
+    color: #323232;
+    background-color: #928374;
+}
+
+#tags button.focused.occupied {
+    color: #323232;
+    background-color: #7daea3; /*base1*/
+}
+
+#views {
+    border: 2px solid #93a1a1;
+}
+
+#clock,
+#cpu,
+#memory,
+#network,
+#battery,
+#temperature {
+    /*padding: 1px 5px;*/
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /*margin-top: 8px;*/
+    margin-left: 8px;
+    /*border: 2px solid #93a1a1;*/ /*base1*/
+}
+
+#temperature {
+    margin-right: 8px;
+}
+
+/*#clock {
+    margin-left: 0px;
+    margin-right: 0px;
+}*/
+

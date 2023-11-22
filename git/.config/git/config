@@ -1,0 +1,36 @@
+[user]
+    name = Nikola Stoyanov
+    email = nikola.da.stoyanov@gmail.com
+
+[alias]
+    co = checkout
+    diff-fork = !git-diff-fork.fish
+    lo = log --pretty=fuller -n 1
+
+[color.decorate]
+    head = cyan bold
+    branch = cyan
+    remoteBranch = magenta
+
+[core]
+    editor = kak
+
+[diff]
+    algorithm = histogram
+    renames = true
+    renamesLimit = 0
+
+[difftool "vscode"]
+    cmd = code --diff $LOCAL $REMOTE
+
+[fetch]
+    prune = true
+
+[init]
+    defaultBranch = master
+
+[pull]
+    ff = only
+
+[push]
+    default = simple

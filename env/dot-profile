@@ -1,0 +1,12 @@
+#
+# ~/.profile
+#
+# Contains system-wide environment configuration
+
+export PATH="$HOME/.local/bin:$PATH"
+
+if test -d ~/.profile.d; then
+    for f in ~/.profile.d/*; do
+        source $f
+    done
+fi

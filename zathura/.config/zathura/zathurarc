@@ -1,0 +1,14 @@
+set selection-clipboard clipboard
+set statusbar-basename true
+set window-title-home-tilde true
+
+set recolor "true"
+
+set recolor-darkcolor "#222222"
+set recolor-lightcolor "#ccbbaa"
+
+set default-bg "#32302f"
+set inputbar-bg "#32302f"
+set inputbar-fg "#bfac8a"
+set statusbar-bg "#32302f"
+set statusbar-fg "#bfac8a"

@@ -1,0 +1,20 @@
+{
+    "position": "top",
+    "modules-left": ["river/tags"],
+    "modules-center": ["wlr/taskbar"],
+    "modules-right": ["battery", "clock", "tray"],
+
+    "battery": {
+        "format": "bat {capacity}",
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%a, %e %b %Y %T}",
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon} {title:.15}",
+        "icon-size": 12,
+    },
+}

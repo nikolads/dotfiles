@@ -1,0 +1,64 @@
+filetype plugin on
+syntax on
+
+set showcmd
+set number
+
+set noswapfile
+
+" Don't ask to save when reading from stdin
+autocmd StdinReadPost * set buftype=nofile
+
+" Make `yank` and `put` use the system clipboard
+set clipboard=unnamedplus
+
+" Don't persist search highlights between vim sessions
+" Note that simply calling `nohlsearch` doesn't work because the highlight
+" state is saved and restored on function call (see :help nohlsearch)
+call feedkeys(":nohlsearch\<CR>")
+
+" Filename/command autocompletion completes up to first unambiguous character
+set wildmode=longest,list
+
+" Use a color scheme with 16 color palette.
+" Ie use only the 16 terminal colors (0 - 15)
+" This has the following benefits
+" - unified look for all terminal programs
+" - can change between light and dark mode by changing the terminal palette
+"
+" For vim we don't need a seperate color scheme. By setting the variable
+" `t_Co` to 16 we force vim to use only 16 colors.
+" This hack doesn't work for neovim as neovim ignores `t_Co`
+colorscheme default
+set t_Co=16
+
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set whichwrap+=<,>,h,l,[,]
+set smartindent
+set nowrap
+set splitright
+
+" Allow selecting arbitrary rectangle in visual block mode and selecting the end of line symbol
+set virtualedit=block,onemore
+
+nmap q <Nop>
+
+" Don't copy deleted text
+nnoremap d "_d
+vnoremap d "_d
+
+" Reselect visual selection after some commands
+vnoremap y y gv
+vnoremap > > gv
+vnoremap < < gv
+
+nnoremap o o <Esc>
+nnoremap O O <Esc>
+
+" Open a file with all folds open
+autocmd BufWinEnter * silent! :%foldopen!
+
+" zc is :foldclose by default
+nmap zv :foldopen<CR>
+nmap z<S-c> :%foldclose<CR>
+nmap z<S-v> :%foldopen!<CR>

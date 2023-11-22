@@ -1,0 +1,9 @@
+#
+# ~/.bash_profile
+#
+# Sourced when bash is invoked as (interactive) login shell
+#
+
+[[ -f ~/.profile ]] && source ~/.profile
+
+[[ -f ~/.bashrc ]] && source ~/.bashrc

@@ -1,0 +1,26 @@
+* {
+    border: none;
+    border-radius: 0;
+    padding: 1px 0px;
+    margin: 0px;
+    font-family: monospace;
+    font-size: 10px;
+    min-height: 0;
+    color: #cccccc;
+}
+
+window#waybar {
+    background-color: #323232;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-color: #323232;
+    border: none;
+    padding: 0px;
+}
+
+#workspaces button.focused {
+    background-color: #ff0000;
+}
