@@ -38,12 +38,6 @@ if which mysql >/dev/null 2>/dev/null
     end
 end
 
-if which nvim >/dev/null 2>/dev/null
-    function vim
-        command nvim $argv
-    end
-end
-
 if which vlc >/dev/null 2>/dev/null
     function vlc
         command vlc $argv >/dev/null 2>/dev/null &

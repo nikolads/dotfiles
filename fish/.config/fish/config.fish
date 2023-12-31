@@ -1,25 +1,93 @@
-# if test -f $HOME/.profile
-#     source $HOME/.profile
-# end
-
 set --export FZF_DEFAULT_OPTS "--color=16"
 
 set fish_greeting
-set fish_prompt_pwd_dir_length 4
 
 bind \cr '__fzf_search_history'
 
 builtin history merge
 
+function print_prompt_pwd
+    set -l full_dirs 1
+    set -l max_dir_len 6
+    set -l color_prompt yellow
+    set -l color_missing red
+
+    set -l full_path $argv[1]
+
+    set -l realhome ~
+    set -l path (string replace -r "^$realhome(\$|/)" '~$1' $full_path)
+    set -l parts (string split "/" $path)
+
+    realpath -e $full_path 1>/dev/null 2>/dev/null; set -l path_exists $status
+
+    set -l short
+    set -l full
+
+    if test (count $parts) -gt $full_dirs
+        set -l n "-$full_dirs"
+        set short $parts[..(math $n - 1)]
+        set full $parts[$n..]
+    else
+        set short
+        set full $parts
+    end
+
+    set -l result
+
+    for part in $short
+        if test (string length $part) -gt $max_dir_len
+            set result $result (printf %s… (string sub -l (math $max_dir_len - 1) $part))
+        else
+            set result $result $part
+        end
+    end
+
+    set result $result $full
+
+    if test $path_exists -eq 0
+        set_color $color_prompt
+        printf %s (string join "/" $result)
+        set_color normal
+    else
+        set_color $color_missing
+        printf %s (string join "/" $result)
+        set_color normal
+    end
+end
+
 function fish_prompt
+    set -l display_status $status
     set -l pwd (prompt_pwd)
+
+    if test $display_status -eq 0
+        set_color -r yellow
+        printf "✔"
+        set_color normal
+        printf " "
+    else
+        set_color -r red
+        printf "✗"
+        set_color normal
+        printf " "
+    end
+
+    set -l n_jobs (jobs -g | wc -l)
+    if test $n_jobs -gt 0
+        set_color brblack
+        printf "[%s]" $n_jobs
+        set_color normal
+        printf " "
+    end
 
     set -l host (if set --query SSH_CONNECTION
        printf "%s:" (hostname)
     end)
 
     set_color yellow
-    printf %s "$host$pwd "
+    # printf %s "$host$pwd "
+    printf %s $host
+    print_prompt_pwd (pwd)
+    printf " "
     set_color normal
 
     set git_branch (git status 2>/dev/null | head -n 1 | sed 's/On branch \(.*\)/\1/')
@@ -31,24 +99,26 @@ function fish_prompt
         end
 
         set_color green
-        printf %s "($git_branch$git_dirty) "
+        printf %s "($git_dirty$git_branch) "
         set_color normal
     end
+
+    set_color normal
 end
 
-# When `cd`-ing to a symlink to a directory, `cd` to the resolved path.
-#
-# From some version onwards fish uses a "virtual" PWD.
-# This reverts to the old behavior.
-# See https://github.com/fish-shell/fish-shell/issues/3350
-functions --copy cd _fish_cd
-function cd
-    if test "$argv" = "" -o "$argv" = "-"
-        _fish_cd $argv
-    else
-        _fish_cd (realpath $argv)
-    end
-end
+# # When `cd`-ing to a symlink to a directory, `cd` to the resolved path.
+# #
+# # From some version onwards fish uses a "virtual" PWD.
+# # This reverts to the old behavior.
+# # See https://github.com/fish-shell/fish-shell/issues/3350
+# functions --copy cd _fish_cd
+# function cd
+#     if test "$argv" = "" -o "$argv" = "-"
+#         _fish_cd $argv
+#     else
+#         _fish_cd (realpath $argv)
+#     end
+# end
 
 # In some version fish changed the terminal title from "fish <cwd>" to just "<cwd>".
 # I want the old title back.
