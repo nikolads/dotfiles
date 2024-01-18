@@ -49,3 +49,9 @@ if which firefox >/dev/null 2>/dev/null
         command firefox --new-window $argv >/dev/null 2>/dev/null &
     end
 end
+
+if which ip >/dev/null 2>/dev/null
+    function ip
+        command ip --color=auto $argv
+    end
+end
