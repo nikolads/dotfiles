@@ -1,0 +1,6 @@
+[submodule "env/.config/zsh/zsh-autosuggestions"]
+	path = zsh/.config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "env/.config/zsh/zsh-fzf-history-search"]
+	path = zsh/.config/zsh/zsh-fzf-history-search
+	url = https://github.com/joshskidmore/zsh-fzf-history-search.git
