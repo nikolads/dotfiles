@@ -1,0 +1,7 @@
+set disassembly-flavor intel
+set print asm-demangle on
+set print static-members off
+
+set history save on
+set history remove-duplicates 1
+set history filename ~/.local/share/gdb/gdb_history
