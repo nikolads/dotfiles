@@ -1,6 +1,5 @@
 filetype plugin on
 syntax on
-
 set showcmd
 set number
 
@@ -32,6 +31,10 @@ set wildmode=longest,list
 colorscheme default
 set t_Co=16
 
+" Don't show error when buffer has unsaved changes and switching to different
+" buffer with :e, :bn, :bp, etc. (:q, :qa still show error)
+set hidden
+
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set whichwrap+=<,>,h,l,[,]
 set smartindent
@@ -41,7 +44,20 @@ set splitright
 " Allow selecting arbitrary rectangle in visual block mode and selecting the end of line symbol
 set virtualedit=block,onemore
 
-nmap q <Nop>
+" Remove delay after pressing <Esc>
+" Assume we are running in a terminal that supports Kitty's keyboard protocol,
+" which allows vim to distingush <Esc> key presses from the start of an escape
+" sequence, without resorting to timing hacks.
+set timeoutlen=1000 ttimeoutlen=0
+
+nnoremap q b
+vnoremap q b
+
+nnoremap o o<Esc>
+nnoremap O O<Esc>
+
+" Muscle memory from kakoune - exit selection with space
+vnoremap <Space> <Esc>
 
 " Don't copy deleted text
 nnoremap d "_d
@@ -51,9 +67,6 @@ vnoremap d "_d
 vnoremap y y gv
 vnoremap > > gv
 vnoremap < < gv
-
-nnoremap o o <Esc>
-nnoremap O O <Esc>
 
 " Open a file with all folds open
 autocmd BufWinEnter * silent! :%foldopen!
