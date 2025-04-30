@@ -3,9 +3,10 @@
     email = nikola.da.stoyanov@gmail.com
 
 [alias]
+    bn = rev-parse --abbrev-ref HEAD
     co = checkout
-    diff-fork = !git-diff-fork.fish
-    lo = log --pretty=fuller -n 1
+    lg = log --graph -n 20 --pretty=lg
+    lo = log -n 1 --pretty=fuller
 
 [color.decorate]
     head = cyan bold
@@ -20,14 +21,17 @@
     renames = true
     renamesLimit = 0
 
-[difftool "vscode"]
-    cmd = code --diff $LOCAL $REMOTE
-
 [fetch]
     prune = true
 
 [init]
     defaultBranch = master
+
+[pager]
+    lg = git-log-fmt.py
+
+[pretty]
+    lg = %C(red)%h%C(reset) %C(green){{{age:%cr}}}%C(reset) %C(8 bold){{{email:%ae}}}%C(reset) - %s  %C(auto)%D%C(reset)
 
 [pull]
     ff = only
