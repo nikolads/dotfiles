@@ -1,0 +1,47 @@
+* {
+    all: unset;
+}
+
+.eww-nsbar {
+    background-color: rgba(60, 60, 60, 0.3);
+    font-family: "monospace";
+    font-size: 13px;
+
+    min-height: 24px;
+}
+
+.workspaces button {
+    min-width: 25px;
+}
+
+.workspaces button.urgent {
+    background-color: #ea6962;
+}
+.workspaces button.active {
+    background-color: #7daea3;
+}
+.workspaces button:hover {
+    background-color: #888;
+}
+
+.windows box {
+    padding-left: 4px;
+    padding-right: 14px;
+}
+.windows .active {
+    background-color: #7daea3;
+}
+
+.datetime {
+    padding-right: 5px;
+}
+
+.systray-box {
+    background-color: #268bd2;
+}
+.systray :first-child image {
+    padding-left: 9px;
+}
+.systray :last-child image {
+    padding-right: 9px;
+}

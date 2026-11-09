@@ -1,0 +1,69 @@
+(defwindow eww-nsbar
+  :monitor 0
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  :geometry (geometry :x "0%" :y "0%" :width "100%" :heigh "24px" :anchor "top center")
+  :reserve (struts :side "top" :distance "24px")
+  (bar))
+
+(defwidget bar []
+  (box :orientation "h"
+       :spacing 40
+       :space-evenly false
+       (workspaces)
+       (windows)
+       (side-stuff)))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :halign "start"
+       :spacing 2
+       (for entry in data-ws
+          (button :class "${entry.is_active ? 'active' : ''} ${entry.is_urgent ? 'urgent': ''}" {entry.name ?: entry.idx}))))
+
+(defwidget windows []
+  (box :class "windows"
+       :orientation "h"
+       :halign "fill"
+       :hexpand true
+       (for entry in {data-windows}
+          (box :class {entry.is_focused ? "active" : ""}
+               :space-evenly false
+               :spacing 4
+               (image :path {entry.icon_path} :image-width 20 :image-height 20)
+               (label :text {entry.title} :show-truncated true)))))
+
+(defwidget side-stuff []
+  (box :class "side-stuff"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+       :spacing 5
+       (label :text "|")
+       (language)
+       (label :text "|")
+       (volume)
+       (label :text "|")
+       (datetime)
+       (systray-box)))
+
+(defwidget language []
+    (label :text "${data-meta.language}"))
+
+(defwidget volume []
+    (box :class "volume"
+         (label :limit-width 8 :text "vol ${data-meta.volume}")))
+
+(defwidget datetime []
+    (box :class "datetime"
+         (label :text {formattime(EWW_TIME, "%a, %d %b %Y %H:%M:%S")})))
+
+(defwidget systray-box []
+    (box :class "systray-box"
+        (systray :class "systray" :icon-size 18 :spacing 8 :orientation "h")))
+
+(defvar data-ws `[]`)
+(defvar data-windows `[]`)
+(defvar data-meta `{}`)
