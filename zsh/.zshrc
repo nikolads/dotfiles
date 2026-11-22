@@ -1,3 +1,5 @@
+test -f "$HOME/.profile" && source "$HOME/.profile"
+
 # Set up the prompt
 prompt_status() {
     printf %s "%(?|%S%F{yellow}✔%f%s|%S%F{red}✘%f%s) "
@@ -57,13 +59,19 @@ preexec() {
     TRAPINT() {}
 }
 
+export EDITOR=kak
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
+# Make glob pattern * match .dotfiles
+setopt dotglob
+
 # command history
+mkdir -p ~/.local/share/zsh/
 setopt histignorealldups histignorespace sharehistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.local/share/zsh/history
 
 # cd history
@@ -74,21 +82,21 @@ alias cdh='cd "$(dirs -l -p | fzf)"'
 # set LS_COLORS variable
 eval "$(dircolors -b)"
 
-# set locale variables
-# For an interactive shell always set locale to "C", regardless of what
-# the system default is. This avoids suprises, where coreutils depend
-# on locale settings where no one expects them to (especially when they
-# are used in scripts)
-export LANG=C.UTF-8
-unset LC_ADDRESS
-unset LC_IDENTIFICATION
-unset LC_MEASUREMENT
-unset LC_MONETARY
-unset LC_NAME
-unset LC_NUMERIC
-unset LC_PAPER
-unset LC_TELEPHONE
-unset LC_TIME
+# # set locale variables
+# # For an interactive shell always set locale to "C", regardless of what
+# # the system default is. This avoids suprises, where coreutils depend
+# # on locale settings where no one expects them to (especially when they
+# # are used in scripts)
+# export LANG=C.UTF-8
+# unset LC_ADDRESS
+# unset LC_IDENTIFICATION
+# unset LC_MEASUREMENT
+# unset LC_MONETARY
+# unset LC_NAME
+# unset LC_NUMERIC
+# unset LC_PAPER
+# unset LC_TELEPHONE
+# unset LC_TIME
 
 # Use modern completion system
 autoload -Uz compinit
@@ -121,19 +129,22 @@ test -d ~/.config/zsh/zsh-fzf-history-search && {
 }
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Remove '/' from WORDCHARS to stop <a-backspace> on directory separators
 # Also remove '='
-WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
+WORDCHARS='*?_-.[]~&!#$%^(){}<>'
+bindkey '^[[1;5C' forward-word      # <c-right>
+bindkey '^[[1;5D' backward-word     # <c-left>
 
-bindkey "$key[Up]" up-line-or-local-history
-bindkey "$key[Down]" down-line-or-local-history
-bindkey '^[[1;5A' up-history
-bindkey '^[[1;5B' down-history
+bindkey '^[[A' up-line-or-local-history     # <up>
+bindkey '^[[B' down-line-or-local-history   # <down>
+bindkey '^[[1;5A' up-history                # <c-up>
+bindkey '^[[1;5B' down-history              # <c-down>
+
+bindkey '^[[H' beginning-of-line    # home
+bindkey '^[[F' end-of-line          # end
 
 up-line-or-local-history() {
     zle set-local-history 1
@@ -148,11 +159,13 @@ down-line-or-local-history() {
 zle -N up-line-or-local-history
 zle -N down-line-or-local-history
 
-alias diff='git diff --no-index --unified=15'
-alias grep='grep --color=auto'
+alias diff='git diff --no-index --unified=5'
+alias grep='grep --perl-regexp --color=auto'
 alias ip='ip --color=auto'
 
 function ls {
     command ls --color=auto -h --time-style="$(printf '+%s' ' %Y-%b-%d %H:%M')" "$@"
 }
-
+function web {
+    command firefox "$@"
+}
